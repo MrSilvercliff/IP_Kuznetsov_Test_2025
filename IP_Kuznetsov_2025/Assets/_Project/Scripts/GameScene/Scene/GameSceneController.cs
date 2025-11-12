@@ -1,19 +1,33 @@
+using _Project.Scripts.GameScene.UI.Views.PlayerInventory;
 using _Project.Scripts.Project.Scenes;
+using _Project.Scripts.Project.Services.ServiceInit;
 using System.Threading.Tasks;
 using UnityEngine;
+using Zenject;
+using ZerglingUnityPlugins.WindowsManagerAsync.Scripts.Services.Views;
 
 namespace _Project.Scripts.GameScene.Scene
 {
     public class GameSceneController : SceneController
     {
-        protected override Task OnAwake()
+        [Inject] private IProjectServiceIniter _projectServiceIniter;
+        [Inject] private IGameSceneServiceIniter _gameSceneServiceIniter;
+
+        [Inject] private IViewController _viewController;
+
+        protected override async Task OnAwake()
         {
-            return Task.CompletedTask;
+            await _projectServiceIniter.Init();
+            await _gameSceneServiceIniter.Init();
         }
 
-        protected override Task OnStart()
+        protected override async Task OnStart()
         {
-            return Task.CompletedTask;
+            await _projectServiceIniter.InitServices(0);
+            await _gameSceneServiceIniter.InitServices(1);
+            await _gameSceneServiceIniter.InitServices(2);
+
+            await _viewController.OpenView<PlayerInventoryView>();
         }
 
         protected override Task OnLateStart()
