@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Tools.Scripts.ObjectPool;
+using IPoolable = ZerglingUnityPlugins.Tools.Scripts.ObjectPool.IPoolable;
 
 namespace _Project.Scripts.Project.ObjectPools
 {
-    public class ProjectMonoMemoryPool<TProjectPoolable> : MonoMemoryPool<TProjectPoolable> where TProjectPoolable : Component, IProjectPoolable
+    public class ProjectMonoMemoryPool<TProjectPoolable> : MonoMemoryPool<TProjectPoolable> where TProjectPoolable : Component, IPoolable
     {
         protected override void OnCreated(TProjectPoolable item)
         {

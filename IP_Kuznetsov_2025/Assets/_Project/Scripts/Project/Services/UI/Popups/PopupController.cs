@@ -117,7 +117,7 @@ namespace _Project.Scripts.Project.Services.UI.Popups
             }
 
             var pool = poolsDictionary[popupType];
-            var result = pool.Get();
+            var result = pool.Spawn();
 
             ResetPopupTransform(result);
 
@@ -159,7 +159,7 @@ namespace _Project.Scripts.Project.Services.UI.Popups
         {
             var popupType = popupWindow.GetType();
             var pool = poolsDictionary[popupType];
-            pool.Push(popupWindow);
+            pool.Despawn(popupWindow);
             return Task.CompletedTask;
         }
 
