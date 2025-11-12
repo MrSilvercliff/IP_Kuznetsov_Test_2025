@@ -2,7 +2,7 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.Configs
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.Configs
 {
     public interface IBalanceConfig
     {

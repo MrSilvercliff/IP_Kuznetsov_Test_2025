@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.BalanceStorage
 {
     public interface IBalanceModelWithIdBase : IBalanceModelBase
     {

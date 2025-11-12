@@ -4,24 +4,24 @@ using Defective.JSON;
 using UnityEngine;
 using ZerglingUnityPlugins.Tools.Scripts.Log;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse
 {
     public interface IJSONParseHelper
     {
         T ParseEnum<T>(JSONObject json, string key, T defaultValue = default, bool ignoreCase = true) where T : struct;
-        
+
         Vector2 ParseVector2(JSONObject json, string key);
         Vector2 ParseVector2(JSONObject json);
-        
+
         Vector2Int ParseVector2Int(JSONObject json, string key);
         Vector2Int ParseVector2Int(JSONObject json);
-        
+
         Vector3 ParseVector3(JSONObject json, string key);
         Vector3 ParseVector3(JSONObject json);
-        
+
         Vector3Int ParseVector3Int(JSONObject json, string key);
         Vector3Int ParseVector3Int(JSONObject json);
-        
+
         List<T> ParseList<T>(JSONObject json, string key);
     }
 
@@ -46,7 +46,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse
         {
             var enumStringValue = json[key].stringValue;
 
-            var tryParseResult = Enum.TryParse<T>(enumStringValue, ignoreCase, out T result);
+            var tryParseResult = Enum.TryParse(enumStringValue, ignoreCase, out T result);
 
             if (tryParseResult)
                 return result;

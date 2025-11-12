@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Defective.JSON;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.Configs;
 using UnityEngine;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.Configs;
 using ZerglingUnityPlugins.Tools.Scripts.Log;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetParse
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.GoogleSheetParse
 {
     public interface IBalanceGoogleSheetParserBase
     {
         void Setup(IBalanceConfig config);
         void ParseBalance();
     }
-    
+
     public abstract class BalanceGoogleSheetParserBase : IBalanceGoogleSheetParserBase
     {
         protected IBalanceConfig _config;
@@ -32,7 +32,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
         {
             _sheets = new Dictionary<string, Func<IEnumerator>>();
             _json = new JSONObject();
-            
+
             _pageText = string.Empty;
             _lines = new List<string>();
         }
@@ -67,13 +67,13 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
 
                 var parseFunc = sheet.Value;
                 var parse = ParseProcess(parseFunc);
-                while (parse.MoveNext()) 
+                while (parse.MoveNext())
                     yield return null;
             }
 
             WriteJsonToFile();
         }
-        
+
         private IEnumerator DownloadProcess(string sheetName)
         {
             LogUtils.Info(this, $"{sheetName} : downloading...");
@@ -115,7 +115,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
             var secondRowBuilder = new StringBuilder();
 
             var lastIndex = firstRowSplit.Length - 1;
-            
+
             for (int i = 0; i < firstRowSplit.Length; i++)
             {
                 var item = firstRowSplit[i];
@@ -176,14 +176,14 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
 
             Debug.LogError(_json.ToString(true));
         }
-        
+
         protected string[] SplitCSVLine(string line)
         {
             var substring = line.Substring(1, line.Length - 2);
             var split = substring.Split(new[] { "\",\"" }, StringSplitOptions.None);
             return split;
         }
-        
+
         protected IEnumerator ParseAsIsDictionary()
         {
             var json = new JSONObject();
@@ -194,9 +194,9 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
             for (int i = 2; i < _lines.Count; i++)
             {
                 var line = _lines[i];
-                
+
                 Debug.Log(line);
-                
+
                 var lineData = SplitCSVLine(_lines[i]);
                 var isNullOrEmpty = string.IsNullOrEmpty(lineData[0]);
                 if (isNullOrEmpty)
@@ -223,7 +223,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
             _lines.Clear();
             yield return null;
         }
-        
+
         protected IEnumerator ParseAsIsConfig()
         {
             var json = new JSONObject();
@@ -238,11 +238,11 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
             }
 
             for (int i = 1; i < _lines.Count; i++)
-            { 
+            {
                 var line = _lines[i];
-                
+
                 Debug.Log(line);
-                
+
                 lineData = SplitCSVLine(line);
 
                 isNullOrEmpty = string.IsNullOrEmpty(lineData[0]);
@@ -261,7 +261,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
             _lines.Clear();
             yield return null;
         }
-        
+
         // ===========================================================================================================
         // ===========================================================================================================
         // ===========================================================================================================
@@ -269,7 +269,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
         // ===========================================================================================================
 
         #region PrimitivesParsingFunctions
-        
+
         private JSONObject ParseLineData(string lineDataString, string dataType)
         {
             JSONObject result = null;
@@ -278,7 +278,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
             {
                 case BalanceParseKeys.INT:
                     var intValue = ParseInt(lineDataString);
-                    result =  JSONObject.Create(intValue);
+                    result = JSONObject.Create(intValue);
                     break;
 
                 case BalanceParseKeys.FLOAT:
@@ -334,7 +334,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
         {
             if (string.IsNullOrEmpty(s))
                 return 0.0f;
-            
+
             float result = 0f;
 
 #if UNITY_EDITOR_WIN
@@ -378,7 +378,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
                 return result;
 
             var split = s.Split(';');
-            
+
             result["x"] = JSONObject.Create(ParseFloat(split[0]));
             result["y"] = JSONObject.Create(ParseFloat(split[1]));
             return result;
@@ -416,7 +416,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
                 return result;
 
             var split = s.Split(';');
-            
+
             result["x"] = JSONObject.Create(ParseInt(split[0]));
             result["y"] = JSONObject.Create(ParseInt(split[1]));
             result["z"] = JSONObject.Create(ParseInt(split[2]));
@@ -445,7 +445,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
 
             return result;
         }
-        
+
         #endregion
     }
 }

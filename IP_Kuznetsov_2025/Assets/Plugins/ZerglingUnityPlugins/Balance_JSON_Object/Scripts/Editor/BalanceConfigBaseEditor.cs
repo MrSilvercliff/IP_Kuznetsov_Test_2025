@@ -1,9 +1,13 @@
-﻿using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.Configs;
-using UnityEngine;
+﻿using UnityEngine;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.Configs;
+
+
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.Editor
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.Editor
 {
     [CustomEditor(typeof(BalanceConfigBase), true)]
     public class BalanceConfigBaseEditor : UnityEditor.Editor

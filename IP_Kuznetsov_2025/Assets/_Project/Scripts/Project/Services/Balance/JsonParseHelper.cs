@@ -1,6 +1,6 @@
 using Defective.JSON;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse;
 using UnityEngine;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse;
 
 namespace _Project.Scripts.Application.Project.Services.Balance
 {

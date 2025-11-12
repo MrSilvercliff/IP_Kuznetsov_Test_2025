@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Defective.JSON;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.Configs;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.BalanceStorage;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.Configs;
 using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.SyncSync;
 using ZerglingUnityPlugins.Tools.Scripts.Log;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse
 {
     public interface IBalanceJSONParser : IProjectService
     {
-        IReadOnlyList<TInterface> ParseBalanceDictionary<TInterface, TClass>(Type balanceStorageType) 
-            where TInterface : IBalanceModelWithIdBase 
+        IReadOnlyList<TInterface> ParseBalanceDictionary<TInterface, TClass>(Type balanceStorageType)
+            where TInterface : IBalanceModelWithIdBase
             where TClass : class, TInterface, new();
 
         TInterface ParseBalanceConfig<TInterface, TClass>(Type balanceStorageType)
@@ -47,7 +47,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse
         {
             _jsonSectionByBalanceStorageType.Clear();
             _jsonSectionByBalanceStorageType = null;
-            
+
             _debugPrintByBalanceStorageType.Clear();
             _debugPrintByBalanceStorageType = null;
             return true;
@@ -57,7 +57,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse
         {
             var balanceFile = _config.BalanceFile;
             var json = JSONObject.Create(balanceFile.text);
-            
+
             var balancePages = _config.GoogleSheetPages;
 
             foreach (var balancePage in balancePages)
@@ -73,14 +73,14 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse
                 var debugPrintOnInit = balancePage.DebugPrintOnInit;
 
                 var jsonSection = json[sectionKey];
-                
+
                 _jsonSectionByBalanceStorageType[balanceStorageType] = jsonSection;
                 _debugPrintByBalanceStorageType[balanceStorageType] = debugPrintOnInit;
             }
         }
-        
-        public IReadOnlyList<TInterface> ParseBalanceDictionary<TInterface, TClass>(Type balanceStorageType) 
-            where TInterface : IBalanceModelWithIdBase 
+
+        public IReadOnlyList<TInterface> ParseBalanceDictionary<TInterface, TClass>(Type balanceStorageType)
+            where TInterface : IBalanceModelWithIdBase
             where TClass : class, TInterface, new()
         {
             var result = new List<TInterface>();
@@ -104,12 +104,12 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse
 
                 result.Add(balanceModel);
             }
-            
+
             return result;
         }
 
-        public TInterface ParseBalanceConfig<TInterface, TClass>(Type balanceStorageType) 
-            where TInterface : IBalanceModelBase 
+        public TInterface ParseBalanceConfig<TInterface, TClass>(Type balanceStorageType)
+            where TInterface : IBalanceModelBase
             where TClass : class, TInterface, new()
         {
             var result = new TClass();
@@ -125,7 +125,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse
                 LogUtils.Error(this, jsonSection.ToString());
                 return new TClass();
             }
-            
+
             return result;
         }
 

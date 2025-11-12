@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetParse
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.GoogleSheetParse
 {
     public static class BalanceParseKeys
     {
@@ -8,9 +8,9 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetPar
 
         public const string INT = "int";
         public const string FLOAT = "float";
-        
+
         public const string BOOL = "bool";
-        
+
         public const string VECTOR_2 = "vector2";
         public const string VECTOR_2_INT = "vector2Int";
 

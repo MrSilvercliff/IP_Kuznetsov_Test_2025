@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse;
 using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.AsyncSync;
 using ZerglingUnityPlugins.Tools.Scripts.Log;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage.Async
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.BalanceStorage.Async
 {
     public interface IBalanceStorageDictionaryAsyncBase<TInterface, TClass> : IProjectService
         where TInterface : IBalanceModelWithIdBase
@@ -18,15 +18,15 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
         bool TryGetById(string id, out TInterface result);
     }
 
-    public abstract class BalanceStorageDictionaryAsyncBase<TInterface, TClass> : IBalanceStorageDictionaryAsyncBase<TInterface, TClass> 
-        where TInterface : IBalanceModelWithIdBase 
+    public abstract class BalanceStorageDictionaryAsyncBase<TInterface, TClass> : IBalanceStorageDictionaryAsyncBase<TInterface, TClass>
+        where TInterface : IBalanceModelWithIdBase
         where TClass : class, TInterface, new()
     {
         [Inject] private IBalanceJSONParser _balanceJsonParser;
-        
+
         protected Dictionary<string, TInterface> _balanceModelsDict;
         protected List<TInterface> _balanceModelsList;
-        
+
         public BalanceStorageDictionaryAsyncBase()
         {
             _balanceModelsDict = new Dictionary<string, TInterface>();
@@ -36,11 +36,11 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
         public async Task<bool> Init()
         {
             await InitBalanceModels();
-            
+
             var balanceStorageType = GetType();
             if (_balanceJsonParser.IsDebugPrintNeeded(balanceStorageType))
                 DebugPrint();
-            
+
             await OnInit();
             return true;
         }
@@ -62,7 +62,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
                 _balanceModelsList.Add(balanceModel);
                 OnBalanceModelAdded(balanceModel);
             }
-            
+
             return Task.FromResult(true);
         }
 
@@ -96,7 +96,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
 
             foreach (var balanceModel in _balanceModelsList)
                 balanceModel.DebugPrint();
-            
+
             LogUtils.Error(this, $"========== DEBUG PRINT END =====");
         }
     }

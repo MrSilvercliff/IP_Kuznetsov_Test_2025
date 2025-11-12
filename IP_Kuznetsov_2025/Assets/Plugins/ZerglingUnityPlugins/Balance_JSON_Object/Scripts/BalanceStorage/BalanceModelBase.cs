@@ -1,10 +1,10 @@
 ﻿using System;
 using Defective.JSON;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse;
 using UnityEngine;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse;
 using ZerglingUnityPlugins.Tools.Scripts.Log;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.BalanceStorage
 {
     public interface IBalanceModelBase
     {
@@ -20,7 +20,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
         public bool TrySetup(JSONObject json, IJSONParseHelper parseHelper)
         {
             var result = true;
-            
+
             try
             {
                 OnTrySetup(json, parseHelper);

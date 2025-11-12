@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse;
 using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.AsyncSync;
 using ZerglingUnityPlugins.Tools.Scripts.Log;
 using ZerglingUnityPlugins.ZenjectExtentions.ContextProvider;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage.Async
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.BalanceStorage.Async
 {
     public interface IBalanceServiceAbstractAsync : IProjectService
     {
@@ -18,7 +18,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
     {
         [Inject] private IBalanceJSONParser _balanceJsonParser;
         [Inject] private IZenjectContextProvider _zenjectContextProvider;
-        
+
         public async Task<bool> Init()
         {
             _balanceJsonParser.Init();
@@ -31,7 +31,7 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
         {
             return true;
         }
-        
+
         private async Task<bool> InitBalanceStorages()
         {
             var diContainer = _zenjectContextProvider.Container;

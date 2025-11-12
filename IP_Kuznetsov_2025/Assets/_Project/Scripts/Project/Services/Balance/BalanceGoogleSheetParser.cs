@@ -1,8 +1,8 @@
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.Configs;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.GoogleSheetParse;
 using System;
 using System.Collections;
 using UnityEngine;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.Configs;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.GoogleSheetParse;
 
 namespace _Project.Scripts.Application.Project.Services.Balance
 {

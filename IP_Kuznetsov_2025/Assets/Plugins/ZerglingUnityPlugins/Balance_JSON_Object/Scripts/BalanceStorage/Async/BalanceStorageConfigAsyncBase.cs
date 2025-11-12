@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.JSONParse;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse;
 using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.AsyncSync;
 using ZerglingUnityPlugins.Tools.Scripts.Log;
 
-namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage.Async
+namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.BalanceStorage.Async
 {
     public interface IBalanceStorageConfigAsyncBase<TInterface, TClass> : IProjectService
         where TInterface : IBalanceModelBase
@@ -13,12 +13,12 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
     {
     }
 
-    public abstract class BalanceStorageConfigAsyncBase<TInterface, TClass> : IBalanceStorageConfigAsyncBase<TInterface, TClass> 
-        where TInterface : IBalanceModelBase 
+    public abstract class BalanceStorageConfigAsyncBase<TInterface, TClass> : IBalanceStorageConfigAsyncBase<TInterface, TClass>
+        where TInterface : IBalanceModelBase
         where TClass : class, TInterface, new()
     {
         [Inject] private IBalanceJSONParser _balanceJsonParser;
-        
+
         protected TInterface _balanceModel;
 
         public BalanceStorageConfigAsyncBase()
@@ -58,9 +58,9 @@ namespace Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.BalanceStorage
         private void DebugPrint()
         {
             LogUtils.Error(this, $"========== DEBUG PRINT START =====");
-            
+
             _balanceModel.DebugPrint();
-            
+
             LogUtils.Error(this, $"========== DEBUG PRINT END =====");
         }
     }

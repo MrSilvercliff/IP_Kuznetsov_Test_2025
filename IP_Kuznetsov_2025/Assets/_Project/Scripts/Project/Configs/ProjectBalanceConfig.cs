@@ -1,6 +1,6 @@
 using _Project.Scripts.Application.Project.Services.Balance;
-using Plugins.ZerglingUnityPlugins.Balance_Total_JSON.Scripts.Configs;
 using UnityEngine;
+using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.Configs;
 
 namespace _Project.Scripts.Project.Configs
 {
