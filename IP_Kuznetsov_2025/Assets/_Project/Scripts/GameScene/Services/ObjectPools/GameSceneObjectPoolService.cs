@@ -8,18 +8,18 @@ namespace _Project.Scripts.GameScene.Services.ObjectPools
     public interface IGameSceneObjectPoolService
     { 
         GameItem.Pool GameItemPool { get; }
-        InventoryController.Pool InventoryControllerPool { get; }
+        InventoryControllerPool InventoryControllerPool { get; }
         InventorySlotController.Pool InventorySlotControllerPool { get; }
     }
 
     public class GameSceneObjectPoolService : IGameSceneObjectPoolService
     {
         public GameItem.Pool GameItemPool => _gameItemPool;
-        public InventoryController.Pool InventoryControllerPool => _inventoryControllerPool;
+        public InventoryControllerPool InventoryControllerPool => _inventoryControllerPool;
         public InventorySlotController.Pool InventorySlotControllerPool => _inventorySlotControllerPool;
 
         [Inject] private GameItem.Pool _gameItemPool;
-        [Inject] private InventoryController.Pool _inventoryControllerPool;
+        [Inject] private InventoryControllerPool _inventoryControllerPool;
         [Inject] private InventorySlotController.Pool _inventorySlotControllerPool;
     }
 }
