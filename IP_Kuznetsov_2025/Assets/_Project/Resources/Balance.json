@@ -1,0 +1,70 @@
+{
+	"INVENTORY_SETTINGS":{
+		"slots_count":24
+	},
+	"GAME_ITEMS":{
+		"resource_wood":{
+			"id":"resource_wood",
+			"item_type":"RESOURCE",
+			"icon_id":"",
+			"stackable":true,
+			"stack_size":99,
+			"name":"Дерево",
+			"description"":"Используется для создания предметов"
+		},
+		"resource_stone":{
+			"id":"resource_stone",
+			"item_type":"RESOURCE",
+			"icon_id":"",
+			"stackable":true,
+			"stack_size":99,
+			"name":"Камень",
+			"description"":"Используется для создания предметов"
+		},
+		"resource_iron":{
+			"id":"resource_iron",
+			"item_type":"RESOURCE",
+			"icon_id":"",
+			"stackable":true,
+			"stack_size":99,
+			"name":"Железо",
+			"description"":"Используется для создания предметов"
+		},
+		"resource_wood_stick":{
+			"id":"resource_wood_stick",
+			"item_type":"RESOURCE",
+			"icon_id":"",
+			"stackable":true,
+			"stack_size":99,
+			"name":"Деревянная палка",
+			"description"":"Используется для создания предметов"
+		},
+		"tool_axe":{
+			"id":"tool_axe",
+			"item_type":"TOOL",
+			"icon_id":"",
+			"stackable":false,
+			"stack_size":0,
+			"name":"Топор",
+			"description"":"ХАЛК РУБИТЬ!"
+		},
+		"tool_pickaxe":{
+			"id":"tool_pickaxe",
+			"item_type":"TOOL",
+			"icon_id":"",
+			"stackable":false,
+			"stack_size":0,
+			"name":"Кирка",
+			"description"":"ХАЛК КОПАТЬ!"
+		},
+		"tool_hammer":{
+			"id":"tool_hammer",
+			"item_type":"TOOL",
+			"icon_id":"",
+			"stackable":false,
+			"stack_size":0,
+			"name":"Молот",
+			"description"":"ХАЛК ЗАБИВАТЬ!"
+		}
+	}
+}
