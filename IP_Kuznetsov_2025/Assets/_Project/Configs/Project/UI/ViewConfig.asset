@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectViews: []
   _startSceneViews: []
-  _gameSceneViews: []
+  _gameSceneViews:
+  - {fileID: 3650752906392507915, guid: 6b44329763159734d82e29a9cb4567fb, type: 3}
