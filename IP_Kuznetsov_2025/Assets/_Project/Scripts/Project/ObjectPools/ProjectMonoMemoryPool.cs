@@ -17,7 +17,6 @@ namespace _Project.Scripts.Project.ObjectPools
 
         protected override void OnSpawned(TProjectPoolable item)
         {
-            base.OnSpawned(item);
             item.OnSpawned();
         }
 
