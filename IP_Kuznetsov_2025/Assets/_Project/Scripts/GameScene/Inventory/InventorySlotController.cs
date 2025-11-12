@@ -29,6 +29,12 @@ namespace _Project.Scripts.GameScene.Inventory
             _gameItem = gameItem;
         }
 
-        public class Pool : MemoryPool<InventorySlotController> { }
+        public class Pool : MemoryPool<InventorySlotController>
+        {
+            protected override void OnDespawned(InventorySlotController item)
+            {
+                item.SetItem(null);
+            }
+        }
     }
 }
