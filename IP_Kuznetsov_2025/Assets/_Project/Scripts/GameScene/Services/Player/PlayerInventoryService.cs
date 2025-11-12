@@ -10,12 +10,12 @@ namespace _Project.Scripts.GameScene.Services.Player
 {
     public interface IPlayerInventoryService : IProjectService
     { 
-        IReadOnlyList<IInventorySlotController> Slots { get; }
+        IInventoryController InventoryController { get; }
     }
 
     public class PlayerInventoryService : IPlayerInventoryService
     {
-        public IReadOnlyList<IInventorySlotController> Slots => _inventoryController.SlotControllers;
+        public IInventoryController InventoryController => _inventoryController;
 
         [Inject] private IGameSceneObjectPoolService _objectPoolService;
 
