@@ -6,7 +6,7 @@
 		"resource_wood":{
 			"id":"resource_wood",
 			"item_type":"RESOURCE",
-			"icon_id":"",
+			"icon_id":"icon_resource_wood",
 			"stackable":true,
 			"stack_size":99,
 			"name":"Дерево",
@@ -15,7 +15,7 @@
 		"resource_stone":{
 			"id":"resource_stone",
 			"item_type":"RESOURCE",
-			"icon_id":"",
+			"icon_id":"icon_resource_stone",
 			"stackable":true,
 			"stack_size":99,
 			"name":"Камень",
@@ -24,7 +24,7 @@
 		"resource_iron":{
 			"id":"resource_iron",
 			"item_type":"RESOURCE",
-			"icon_id":"",
+			"icon_id":"icon_resource_iron",
 			"stackable":true,
 			"stack_size":99,
 			"name":"Железо",
@@ -33,7 +33,7 @@
 		"resource_wood_stick":{
 			"id":"resource_wood_stick",
 			"item_type":"RESOURCE",
-			"icon_id":"",
+			"icon_id":"icon_resource_wood_stick",
 			"stackable":true,
 			"stack_size":99,
 			"name":"Деревянная палка",
@@ -42,7 +42,7 @@
 		"tool_axe":{
 			"id":"tool_axe",
 			"item_type":"TOOL",
-			"icon_id":"",
+			"icon_id":"icon_tool_axe",
 			"stackable":false,
 			"stack_size":0,
 			"name":"Топор",
@@ -51,7 +51,7 @@
 		"tool_pickaxe":{
 			"id":"tool_pickaxe",
 			"item_type":"TOOL",
-			"icon_id":"",
+			"icon_id":"icon_tool_pickaxe",
 			"stackable":false,
 			"stack_size":0,
 			"name":"Кирка",
@@ -60,7 +60,7 @@
 		"tool_hammer":{
 			"id":"tool_hammer",
 			"item_type":"TOOL",
-			"icon_id":"",
+			"icon_id":"icon_tool_hammer",
 			"stackable":false,
 			"stack_size":0,
 			"name":"Молот",
