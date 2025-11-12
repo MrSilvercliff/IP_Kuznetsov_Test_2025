@@ -96,9 +96,11 @@ namespace _Project.Scripts.Project.Services.UI.Popups
 
         protected override IPopupWindow GetPopup(Type popupType)
         {
-            var result = GetPopup(popupType, _projectPopups, _projectPools);
+            IPopupWindow result = null;
 
-            if (result == null)
+            if (_projectPools.ContainsKey(popupType)) 
+                result = GetPopup(popupType, _projectPopups, _projectPools);
+            else
                 result = GetPopup(popupType, _scenePopups, _scenePools);
 
             return result;
@@ -106,9 +108,6 @@ namespace _Project.Scripts.Project.Services.UI.Popups
 
         private IPopupWindow GetPopup(Type popupType, Dictionary<Type, PopupWindow> popupDictionary, Dictionary<Type, IZenjectFactoryMonoPool<PopupWindow>> poolsDictionary)
         {
-            if (!popupDictionary.ContainsKey(popupType))
-                return null;
-
             if (!poolsDictionary.ContainsKey(popupType))
             {
                 var popup = popupDictionary[popupType];
