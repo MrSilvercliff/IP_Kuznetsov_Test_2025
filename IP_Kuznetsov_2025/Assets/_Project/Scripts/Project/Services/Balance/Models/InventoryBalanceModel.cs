@@ -12,13 +12,11 @@ namespace _Project.Scripts.Project.Services.Balance.Models
 
     public class InventoryBalanceModel : BalanceModelBase, IInventoryBalanceModel
     {
-        public int SlotsCount => _slotsCount;
-
-        private int _slotsCount;
+        public int SlotsCount { get; private set; }
 
         protected override void OnTrySetup(JSONObject json, IJSONParseHelper parseHelper)
         {
-            _slotsCount = json["slots_count"].intValue;
+            SlotsCount = json["slots_count"].intValue;
         }
 
         public override void DebugPrint()
