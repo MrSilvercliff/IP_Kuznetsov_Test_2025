@@ -5,14 +5,14 @@ using Zenject;
 
 namespace _Project.Scripts.GameScene.Services.ObjectPools
 {
-    public interface IGameObjectPoolService
+    public interface IGameSceneObjectPoolService
     { 
         GameItem.Pool GameItemPool { get; }
         InventoryController.Pool InventoryControllerPool { get; }
         InventorySlotController.Pool InventorySlotControllerPool { get; }
     }
 
-    public class GameSceneObjectPoolService : IGameObjectPoolService
+    public class GameSceneObjectPoolService : IGameSceneObjectPoolService
     {
         public GameItem.Pool GameItemPool => _gameItemPool;
         public InventoryController.Pool InventoryControllerPool => _inventoryControllerPool;
