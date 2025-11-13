@@ -10,7 +10,7 @@
 			"stackable":true,
 			"stack_size":99,
 			"name":"Wood",
-			"description"":"Used to create items"
+			"description":"Used to create items"
 		},
 		"resource_stone":{
 			"id":"resource_stone",
@@ -19,7 +19,7 @@
 			"stackable":true,
 			"stack_size":99,
 			"name":"Stone",
-			"description"":"Used to create items"
+			"description":"Used to create items"
 		},
 		"resource_iron":{
 			"id":"resource_iron",
@@ -28,7 +28,7 @@
 			"stackable":true,
 			"stack_size":99,
 			"name":"Iron",
-			"description"":"Used to create items"
+			"description":"Used to create items"
 		},
 		"resource_wood_stick":{
 			"id":"resource_wood_stick",
@@ -37,34 +37,34 @@
 			"stackable":true,
 			"stack_size":99,
 			"name":"Wood stick",
-			"description"":"Used to create items"
+			"description":"Used to create items"
 		},
 		"tool_axe":{
 			"id":"tool_axe",
 			"item_type":"TOOL",
 			"icon_id":"icon_tool_axe",
 			"stackable":false,
-			"stack_size":0,
+			"stack_size":1,
 			"name":"Axe",
-			"description"":"HULK CHOP!"
+			"description":"HULK CHOP!"
 		},
 		"tool_pickaxe":{
 			"id":"tool_pickaxe",
 			"item_type":"TOOL",
 			"icon_id":"icon_tool_pickaxe",
 			"stackable":false,
-			"stack_size":0,
+			"stack_size":1,
 			"name":"Pickaxe",
-			"description"":"HULK DIG!"
+			"description":"HULK DIG!"
 		},
 		"tool_hammer":{
 			"id":"tool_hammer",
 			"item_type":"TOOL",
 			"icon_id":"icon_tool_hammer",
 			"stackable":false,
-			"stack_size":0,
+			"stack_size":1,
 			"name":"Hammer",
-			"description"":"HULK BEAT!"
+			"description":"HULK BEAT!"
 		}
 	}
 }
