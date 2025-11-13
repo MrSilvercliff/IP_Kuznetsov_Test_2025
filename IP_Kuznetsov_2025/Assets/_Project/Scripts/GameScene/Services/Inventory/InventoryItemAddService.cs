@@ -24,7 +24,9 @@ namespace _Project.Scripts.GameScene.Services.Inventory
         [Inject] private IProjectBalanceService _balanceService;
         [Inject] private IEventBusAsync _eventBus;
         [Inject] private IGameSceneObjectPoolService _objectPoolService;
+
         [Inject] private IInventorySlotService _inventorySlotService;
+        [Inject] private IInventoryItemRemoveService _inventoryItemRemoveService;
 
         public Task<bool> Init()
         {
@@ -72,6 +74,9 @@ namespace _Project.Scripts.GameScene.Services.Inventory
 
                 if (gameItemBalanceModel.IsStackable)
                     count = Random.Range(1, gameItemBalanceModel.StackSize + 1); // +1 for include max stack size
+
+                if (!slotController.IsEmpty)
+                    _inventoryItemRemoveService.ClearInventorySlot(slotController);
 
                 SetNewGameItemToSlot(slotController, gameItemBalanceModel, count);
             }

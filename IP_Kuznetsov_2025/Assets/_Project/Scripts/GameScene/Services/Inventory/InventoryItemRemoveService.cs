@@ -14,6 +14,7 @@ namespace _Project.Scripts.GameScene.Services.Inventory
     public interface IInventoryItemRemoveService : IProjectService
     {
         void ClearInventory(IInventoryController inventoryController);
+        bool ClearInventorySlot(IInventorySlotController inventorySlotController);
     }
 
     public class InventoryItemRemoveService : IInventoryItemRemoveService
@@ -42,7 +43,7 @@ namespace _Project.Scripts.GameScene.Services.Inventory
             }
         }
 
-        private bool ClearInventorySlot(IInventorySlotController targetInventorySlotController)
+        public bool ClearInventorySlot(IInventorySlotController targetInventorySlotController)
         {
             if (targetInventorySlotController.IsEmpty)
                 return true;
