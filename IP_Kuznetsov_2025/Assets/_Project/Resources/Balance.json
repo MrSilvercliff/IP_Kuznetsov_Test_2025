@@ -9,8 +9,8 @@
 			"icon_id":"icon_resource_wood",
 			"stackable":true,
 			"stack_size":99,
-			"name":"Дерево",
-			"description"":"Используется для создания предметов"
+			"name":"Wood",
+			"description"":"Used to create items"
 		},
 		"resource_stone":{
 			"id":"resource_stone",
@@ -18,8 +18,8 @@
 			"icon_id":"icon_resource_stone",
 			"stackable":true,
 			"stack_size":99,
-			"name":"Камень",
-			"description"":"Используется для создания предметов"
+			"name":"Stone",
+			"description"":"Used to create items"
 		},
 		"resource_iron":{
 			"id":"resource_iron",
@@ -27,8 +27,8 @@
 			"icon_id":"icon_resource_iron",
 			"stackable":true,
 			"stack_size":99,
-			"name":"Железо",
-			"description"":"Используется для создания предметов"
+			"name":"Iron",
+			"description"":"Used to create items"
 		},
 		"resource_wood_stick":{
 			"id":"resource_wood_stick",
@@ -36,8 +36,8 @@
 			"icon_id":"icon_resource_wood_stick",
 			"stackable":true,
 			"stack_size":99,
-			"name":"Деревянная палка",
-			"description"":"Используется для создания предметов"
+			"name":"Wood stick",
+			"description"":"Used to create items"
 		},
 		"tool_axe":{
 			"id":"tool_axe",
@@ -45,8 +45,8 @@
 			"icon_id":"icon_tool_axe",
 			"stackable":false,
 			"stack_size":0,
-			"name":"Топор",
-			"description"":"ХАЛК РУБИТЬ!"
+			"name":"Axe",
+			"description"":"HULK CHOP!"
 		},
 		"tool_pickaxe":{
 			"id":"tool_pickaxe",
@@ -54,8 +54,8 @@
 			"icon_id":"icon_tool_pickaxe",
 			"stackable":false,
 			"stack_size":0,
-			"name":"Кирка",
-			"description"":"ХАЛК КОПАТЬ!"
+			"name":"Pickaxe",
+			"description"":"HULK DIG!"
 		},
 		"tool_hammer":{
 			"id":"tool_hammer",
@@ -63,8 +63,8 @@
 			"icon_id":"icon_tool_hammer",
 			"stackable":false,
 			"stack_size":0,
-			"name":"Молот",
-			"description"":"ХАЛК ЗАБИВАТЬ!"
+			"name":"Hammer",
+			"description"":"HULK BEAT!"
 		}
 	}
 }
