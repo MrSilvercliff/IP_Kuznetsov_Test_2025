@@ -29,10 +29,12 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
 
         private void OnButtonFillRandomClick()
         {
+            _inventoryService.FillRandom(_inventoryController);
         }
 
         private void OnButtonClearClick()
         {
+            _inventoryService.ClearInventory(_inventoryController);
         }
     }
 }
