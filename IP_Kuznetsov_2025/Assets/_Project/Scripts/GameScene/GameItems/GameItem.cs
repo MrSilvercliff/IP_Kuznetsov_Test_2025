@@ -53,6 +53,13 @@ namespace _Project.Scripts.GameScene.GameItems
             Count = newCount;
         }
 
-        public class Pool : MemoryPool<GameItem> { }
+        public class Pool : MemoryPool<GameItem> 
+        {
+            protected override void OnDespawned(GameItem item)
+            {
+                item.Setup(null);
+                item.SetCount(0);
+            }
+        }
     }
 }
