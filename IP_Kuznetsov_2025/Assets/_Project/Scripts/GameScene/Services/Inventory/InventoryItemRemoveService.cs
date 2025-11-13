@@ -1,10 +1,12 @@
 using _Project.Scripts.GameScene.GameItems;
 using _Project.Scripts.GameScene.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
+using _Project.Scripts.GameScene.UI.Events;
 using _Project.Scripts.Project.Services.Balance.Models;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Tools.Scripts.EventBus.Async;
 using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.AsyncSync;
 
 namespace _Project.Scripts.GameScene.Services.Inventory
@@ -16,6 +18,7 @@ namespace _Project.Scripts.GameScene.Services.Inventory
 
     public class InventoryItemRemoveService : IInventoryItemRemoveService
     {
+        [Inject] private IEventBusAsync _eventBus;
         [Inject] private IGameSceneObjectPoolService _objectPoolService;
 
         public Task<bool> Init()
@@ -48,6 +51,9 @@ namespace _Project.Scripts.GameScene.Services.Inventory
             var item = (GameItem)targetInventorySlotController.Item;
             gameItemPool.Despawn(item);
             targetInventorySlotController.SetItem(null);
+            
+            var evnt = new InventorySlotChangedEvent(targetInventorySlotController);
+            _eventBus.Fire(evnt);
             return true;
         }
     }

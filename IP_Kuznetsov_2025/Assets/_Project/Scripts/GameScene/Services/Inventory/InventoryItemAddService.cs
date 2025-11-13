@@ -1,11 +1,13 @@
 using _Project.Scripts.GameScene.GameItems;
 using _Project.Scripts.GameScene.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
+using _Project.Scripts.GameScene.UI.Events;
 using _Project.Scripts.Project.Services.Balance;
 using _Project.Scripts.Project.Services.Balance.Models;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Tools.Scripts.EventBus.Async;
 using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.AsyncSync;
 
 namespace _Project.Scripts.GameScene.Services.Inventory
@@ -20,6 +22,7 @@ namespace _Project.Scripts.GameScene.Services.Inventory
     public class InventoryItemAddService : IInventoryItemAddService
     {
         [Inject] private IProjectBalanceService _balanceService;
+        [Inject] private IEventBusAsync _eventBus;
         [Inject] private IGameSceneObjectPoolService _objectPoolService;
         [Inject] private IInventorySlotService _inventorySlotService;
 
@@ -81,6 +84,9 @@ namespace _Project.Scripts.GameScene.Services.Inventory
             newGameItem.Setup(gameItemBalanceModel);
             newGameItem.SetCount(count);
             slotController.SetItem(newGameItem);
+
+            var evnt = new InventorySlotChangedEvent(slotController);
+            _eventBus.Fire(evnt);
         }
     }
 }
