@@ -200,6 +200,7 @@ MonoBehaviour:
   _monoUpdater: {fileID: 4192257499873610867}
   _sceneLoadController: {fileID: 4464330636990027545}
   _projectBalanceConfig: {fileID: 11400000, guid: 5b85d4cbcad55b047acfc74a7e8f33c1, type: 2}
+  _projectSpriteConfig: {fileID: 11400000, guid: 3ba836449241ac84fa774884cf05f425, type: 2}
   _viewConfig: {fileID: 11400000, guid: 91a1e65a4d45c3b4fb6c6603d84a873a, type: 2}
   _viewController: {fileID: 1020460463304729275}
   _popupConfig: {fileID: 11400000, guid: 28245aa1638939e458e8b20d56e92068, type: 2}
