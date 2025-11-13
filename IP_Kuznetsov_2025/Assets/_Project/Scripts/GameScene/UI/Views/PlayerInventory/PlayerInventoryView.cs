@@ -11,6 +11,7 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
     public class PlayerInventoryView : ViewWindow
     {
         [SerializeField] private InventoryWidget _inventoryWidget;
+        [SerializeField] private PlayerInventoryViewTestButtonsWidget _testButtonsWidget;
 
         [Inject] private IPlayerService _playerService;
 
@@ -23,7 +24,9 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
 
         protected override Task<bool> OnSetup(IWindowSetup setup)
         {
-            _inventoryWidget.Setup(_playerService.Inventory.InventoryController);
+            var playerInventoryController = _playerService.Inventory.InventoryController;
+            _inventoryWidget.Setup(playerInventoryController);
+            _testButtonsWidget.Setup(playerInventoryController);
             return Task.FromResult(true);
         }
     }
