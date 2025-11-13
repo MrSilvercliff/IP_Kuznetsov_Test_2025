@@ -4,7 +4,6 @@ using _Project.Scripts.GameScene.Services.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
 using _Project.Scripts.GameScene.Services.Player;
 using _Project.Scripts.GameScene.UI.Widgets.Inventory;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using Zenject;
 using ZerglingUnityPlugins.ZenjectExtentions.SceneInstallers;
