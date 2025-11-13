@@ -37,6 +37,7 @@ namespace _Project.Scripts.Project.Zenject
         [SerializeField] private MonoUpdater _monoUpdater;
         [SerializeField] private SceneLoadController _sceneLoadController;
         [SerializeField] private ProjectBalanceConfig _projectBalanceConfig;
+        [SerializeField] private ProjectSpriteConfig _projectSpriteConfig;
 
         [Header("VIEWS")]
         [SerializeField] private ViewConfig _viewConfig;
@@ -58,6 +59,8 @@ namespace _Project.Scripts.Project.Zenject
 
         private void BindBasicServices()
         {
+            BindConfigs();
+
             BindZenjectExtensions();
 
             BindEventBus();
@@ -78,6 +81,11 @@ namespace _Project.Scripts.Project.Zenject
         }
 
         #region BasicServices
+
+        private void BindConfigs()
+        {
+            Container.Bind<IProjectSpriteConfig>().FromInstance(_projectSpriteConfig).AsSingle();
+        }
 
         private void BindZenjectExtensions()
         {
