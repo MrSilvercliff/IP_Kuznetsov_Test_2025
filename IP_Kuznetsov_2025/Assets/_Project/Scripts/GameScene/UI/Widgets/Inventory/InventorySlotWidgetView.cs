@@ -38,7 +38,6 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
 
             _countText.gameObject.SetActive(slotItem.IsStackable);
             _countText.text = slotItem.Count.ToString();
-
         }
     }
 }

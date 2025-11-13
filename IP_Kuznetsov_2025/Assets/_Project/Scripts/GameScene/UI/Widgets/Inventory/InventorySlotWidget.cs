@@ -1,17 +1,35 @@
 using _Project.Scripts.GameScene.Inventory;
+using _Project.Scripts.GameScene.UI.Events;
 using _Project.Scripts.Project.Monobeh;
 using _Project.Scripts.Project.ObjectPools;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
+using Zenject;
+using ZerglingUnityPlugins.Tools.Scripts.EventBus.Async;
 using ZerglingUnityPlugins.Tools.Scripts.ObjectPool;
+using IPoolable = ZerglingUnityPlugins.Tools.Scripts.ObjectPool.IPoolable;
 
 namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
 {
     public class InventorySlotWidget : ProjectMonoBehaviour, IPoolable
     {
         [Header("INVENTORY SLOT WIDGET")]
-        [SerializeField] private InventorySlotWidgetView _view; 
+        [SerializeField] private InventorySlotWidgetView _view;
+
+        [Inject] private IEventBusAsync _eventBus;
 
         private IInventorySlotController _inventorySlotController;
+
+        private void OnEnable()
+        {
+            _eventBus.Subscribe<InventorySlotChangedEvent>(OnInventorySlotChangedEvent);
+        }
+
+        private void OnDisable()
+        {
+            _eventBus.UnSubscribe<InventorySlotChangedEvent>(OnInventorySlotChangedEvent);
+        }
 
         public void Setup(IInventorySlotController inventorySlotController)
         { 
@@ -32,6 +50,17 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
         public void OnDespawned()
         {
             _inventorySlotController = null;
+        }
+
+        private async Task OnInventorySlotChangedEvent(InventorySlotChangedEvent evnt)
+        {
+            if (_inventorySlotController == null)
+                return;
+
+            if (_inventorySlotController != evnt.InventorySlotController)
+                return;
+
+            _view.Refresh(_inventorySlotController);
         }
 
         public class Pool : ProjectMonoMemoryPool<InventorySlotWidget> { }
