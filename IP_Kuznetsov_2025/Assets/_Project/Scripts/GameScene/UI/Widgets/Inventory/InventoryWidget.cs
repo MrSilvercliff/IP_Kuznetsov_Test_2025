@@ -49,6 +49,8 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
                 widget.transform.ResetLocalRotation();
                 widget.transform.ResetLocalScale();
                 widget.SetActive(true);
+
+                _inventorySlotWidgets.Add(widget);
             }
         }
 
