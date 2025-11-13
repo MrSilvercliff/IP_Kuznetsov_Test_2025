@@ -17,6 +17,7 @@ using UnityEngine;
 using Zenject;
 using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.Configs;
 using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse;
+using ZerglingUnityPlugins.Tools.Scripts.EventBus.Async;
 using ZerglingUnityPlugins.Tools.Scripts.Mono;
 using ZerglingUnityPlugins.WindowsManagerAsync.Scripts.Configs;
 using ZerglingUnityPlugins.WindowsManagerAsync.Scripts.Popups;
@@ -59,6 +60,8 @@ namespace _Project.Scripts.Project.Zenject
         {
             BindZenjectExtensions();
 
+            BindEventBus();
+
             BindMonoUpdater();
 
             BindSceneLoadingServices();
@@ -79,6 +82,11 @@ namespace _Project.Scripts.Project.Zenject
         private void BindZenjectExtensions()
         {
             Container.Bind<IZenjectContextProvider>().To<ZenjectContextProvider>().AsSingle();
+        }
+
+        private void BindEventBus()
+        {
+            Container.Bind<IEventBusAsync>().To<EventBusAsync>().AsSingle();
         }
 
         private void BindMonoUpdater()
