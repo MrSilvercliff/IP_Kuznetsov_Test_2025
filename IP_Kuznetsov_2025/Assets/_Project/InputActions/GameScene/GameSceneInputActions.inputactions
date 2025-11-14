@@ -40,7 +40,18 @@
                 {
                     "name": "",
                     "id": "5c5190df-9727-4727-aa01-eb1dc58c1648",
-                    "path": "<Pointer>/press",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3c853f3-708c-49f8-9800-586e646f99c0",
+                    "path": "<Touchscreen>/Press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

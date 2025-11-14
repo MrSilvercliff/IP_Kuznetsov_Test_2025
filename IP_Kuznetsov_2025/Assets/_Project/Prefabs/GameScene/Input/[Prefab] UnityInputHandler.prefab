@@ -75,6 +75,23 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8547b484-3a0d-4ad8-ac16-b98fe3a54373
     m_ActionName: 'Player/PointerPosition[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5211493813116241060}
+        m_TargetAssemblyTypeName: _Project.Scripts.GameScene.Input.UnityInputHandler,
+          _Project.Scripts.GameScene
+        m_MethodName: OnPointerLeftClickInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3ddc2bd3-bab7-4aba-9134-e9db47ead994
+    m_ActionName: 'Player/LeftClick[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

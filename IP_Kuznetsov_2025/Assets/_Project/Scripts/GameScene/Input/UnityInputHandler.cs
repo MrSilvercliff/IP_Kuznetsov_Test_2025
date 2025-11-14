@@ -27,5 +27,11 @@ namespace _Project.Scripts.GameScene.Input
             var pointerPosition = context.ReadValue<Vector2>();
             _inputController.OnPointerPositionInput(pointerPosition);
         }
+
+        public void OnPointerLeftClickInput(InputAction.CallbackContext context)
+        {
+            var phase = context.phase;
+            _inputController.OnPointerLeftClickInput(phase, Vector2.zero); // in input controller we will provide actual pointer position
+        }
     }
 }
