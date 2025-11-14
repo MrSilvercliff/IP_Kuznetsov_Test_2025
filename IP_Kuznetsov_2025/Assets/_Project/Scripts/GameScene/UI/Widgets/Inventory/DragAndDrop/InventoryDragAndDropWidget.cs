@@ -132,6 +132,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 
         private void ProcessDropToSlot()
         { 
+            _inventoryService.MoveItemBetweenSlots(_dragInventorySlotController, _dropInventorySlotController);
         }
     }
 }
