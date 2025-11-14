@@ -23,7 +23,9 @@ namespace _Project.Scripts.GameScene.Input
         }
 
         public void OnPointerPositionInputAction(InputAction.CallbackContext context)
-        { 
+        {
+            var pointerPosition = context.ReadValue<Vector2>();
+            _inputController.OnPointerPositionInput(pointerPosition);
         }
     }
 }

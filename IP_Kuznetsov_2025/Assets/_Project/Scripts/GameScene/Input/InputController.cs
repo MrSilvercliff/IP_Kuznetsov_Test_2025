@@ -56,11 +56,14 @@ namespace _Project.Scripts.GameScene.Input
 
         #region Pointer_Input
 
-        public void OnPointerPositionInput()
+        public void OnPointerPositionInput(Vector2 pointerPosition)
         {
-            
+            PointerPosition = pointerPosition;
+
+            Debug.Log(PointerPosition);
+
             for (int i = 0; i < _pointerInputListeners.Count; i++)
-                _pointerInputListeners[i].OnPointerPositionInput();
+                _pointerInputListeners[i].OnPointerPositionInput(pointerPosition);
         }
 
         #endregion Pointer_Input

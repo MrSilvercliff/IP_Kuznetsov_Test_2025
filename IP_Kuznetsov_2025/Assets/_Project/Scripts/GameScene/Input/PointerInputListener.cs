@@ -4,6 +4,6 @@ namespace _Project.Scripts.GameScene.Input
 {
     public interface IPointerInputListener
     {
-        void OnPointerPositionInput();
+        void OnPointerPositionInput(Vector2 pointerPosition);
     }
 }
