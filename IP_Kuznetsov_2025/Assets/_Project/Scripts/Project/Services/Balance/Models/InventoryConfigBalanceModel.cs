@@ -5,12 +5,12 @@ using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse;
 
 namespace _Project.Scripts.Project.Services.Balance.Models
 {
-    public interface IInventoryBalanceModel : IBalanceModelBase
+    public interface IInventoryConfigBalanceModel : IBalanceModelBase
     { 
         int SlotsCount { get; }
     }
 
-    public class InventoryBalanceModel : BalanceModelBase, IInventoryBalanceModel
+    public class InventoryConfigBalanceModel : BalanceModelBase, IInventoryConfigBalanceModel
     {
         public int SlotsCount { get; private set; }
 
