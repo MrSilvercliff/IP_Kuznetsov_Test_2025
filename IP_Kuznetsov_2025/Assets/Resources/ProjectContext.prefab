@@ -201,6 +201,7 @@ MonoBehaviour:
   _sceneLoadController: {fileID: 4464330636990027545}
   _projectBalanceConfig: {fileID: 11400000, guid: 5b85d4cbcad55b047acfc74a7e8f33c1, type: 2}
   _projectSpriteConfig: {fileID: 11400000, guid: 3ba836449241ac84fa774884cf05f425, type: 2}
+  _uiCameraController: {fileID: 0}
   _viewConfig: {fileID: 11400000, guid: 91a1e65a4d45c3b4fb6c6603d84a873a, type: 2}
   _viewController: {fileID: 1020460463304729275}
   _popupConfig: {fileID: 11400000, guid: 28245aa1638939e458e8b20d56e92068, type: 2}
@@ -262,7 +263,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8929049430311458053, guid: f6dcf315c4da8494383c82daccfd2209, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5778389202806028049}
   m_SourcePrefab: {fileID: 100100000, guid: f6dcf315c4da8494383c82daccfd2209, type: 3}
 --- !u!114 &1020460463304729275 stripped
 MonoBehaviour:
@@ -302,3 +306,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a32b528a1a85a04eb94544b32be54f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8841767729035875345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8929049430311458053, guid: f6dcf315c4da8494383c82daccfd2209, type: 3}
+  m_PrefabInstance: {fileID: 98551157519827220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5778389202806028049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8841767729035875345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
