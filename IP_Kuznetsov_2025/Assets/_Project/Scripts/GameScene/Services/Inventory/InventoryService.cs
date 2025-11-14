@@ -1,4 +1,5 @@
 using _Project.Scripts.GameScene.Inventory;
+using Codice.Client.Common.WebApi.Responses;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,7 @@ namespace _Project.Scripts.GameScene.Services.Inventory
     {
         void FillRandom(IInventoryController targetInventory);
         void ClearInventory(IInventoryController inventoryController);
+        bool ClearInventorySlot(IInventorySlotController inventorySlotController);
     }
 
     public class InventoryService : IInventoryService
@@ -36,6 +38,12 @@ namespace _Project.Scripts.GameScene.Services.Inventory
         public void ClearInventory(IInventoryController inventoryController)
         {
             _itemRemoveService.ClearInventory(inventoryController);
+        }
+
+        public bool ClearInventorySlot(IInventorySlotController inventorySlotController)
+        {
+            var result = _itemRemoveService.ClearInventorySlot(inventorySlotController);
+            return result;
         }
     }
 }
