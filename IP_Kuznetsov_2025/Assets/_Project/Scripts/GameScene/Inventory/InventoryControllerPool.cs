@@ -3,6 +3,7 @@ using _Project.Scripts.Project.Services.Balance;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Tools.Scripts.Log;
 
 namespace _Project.Scripts.GameScene.Inventory
 {
@@ -11,9 +12,20 @@ namespace _Project.Scripts.GameScene.Inventory
         [Inject] private IProjectBalanceService _balanceService;
         [Inject] private IGameSceneObjectPoolService _gameSceneObjectPoolService;
 
-        protected override void OnSpawned(InventoryController item)
+        public InventoryController SpawnDefaultInventoryController()
         {
-            FillInventoryControllerSlots(item);
+            var result = Spawn();
+            var slotsCount = _balanceService.InventoryConfig.SlotsCount;
+            FillInventoryControllerSlots(result, slotsCount);
+            return result;
+        }
+
+        public InventoryController SpawnWorkbenchInventoryController()
+        {
+            var result = Spawn();
+            var slotsCount = _balanceService.WorkbenchConfig.WorkbenchInventorySlotCount;
+            FillInventoryControllerSlots(result, slotsCount);
+            return result;
         }
 
         protected override void OnDespawned(InventoryController item)
@@ -21,9 +33,8 @@ namespace _Project.Scripts.GameScene.Inventory
             FlushInventoryControllerSlots(item);
         }
 
-        private void FillInventoryControllerSlots(IInventoryController inventoryController)
+        private void FillInventoryControllerSlots(IInventoryController inventoryController, int slotsCount)
         { 
-            var slotsCount = _balanceService.InventoryConfig.SlotsCount;
             var slotControllerPool = _gameSceneObjectPoolService.InventorySlotControllerPool;
 
             var slotControllersList = (List<IInventorySlotController>)inventoryController.SlotControllers;
