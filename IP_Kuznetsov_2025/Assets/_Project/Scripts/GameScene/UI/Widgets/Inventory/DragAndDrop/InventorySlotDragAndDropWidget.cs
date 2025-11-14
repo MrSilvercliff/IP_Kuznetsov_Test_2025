@@ -40,6 +40,9 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 
         public void OnUpdate(float deltaTime)
         {
+            if (!_dragInProcess)
+                return;
+
             if (_dropInProcess)
                 return;
 
@@ -58,6 +61,9 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 
         public void OnDrop(IInventorySlotController inventorySlotController)
         {
+            if (!_dragInProcess)
+                return;
+
             if (_dropInProcess)
                 return;
 
