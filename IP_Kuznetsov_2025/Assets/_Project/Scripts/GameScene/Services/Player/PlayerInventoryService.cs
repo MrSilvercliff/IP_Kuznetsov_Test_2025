@@ -24,7 +24,7 @@ namespace _Project.Scripts.GameScene.Services.Player
         public Task<bool> Init()
         {
             var inventoryControllerPool = _objectPoolService.InventoryControllerPool;
-            _inventoryController = inventoryControllerPool.Spawn();
+            _inventoryController = inventoryControllerPool.SpawnDefaultInventoryController();
             return Task.FromResult(true);
         }
 
