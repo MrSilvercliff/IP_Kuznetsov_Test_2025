@@ -11,7 +11,7 @@ namespace _Project.Scripts.GameScene.Input
         Vector2 PointerPosition { get; }
 
         void Subscribe(IPointerInputListener pointerInputListener);
-        void Unsubscribe(IPointerInputListener pointerInputListener);
+        void UnSubscribe(IPointerInputListener pointerInputListener);
     }
 
     public class InputController : IInputController
@@ -45,7 +45,7 @@ namespace _Project.Scripts.GameScene.Input
             _pointerInputListeners.Add(pointerInputListener);
         }
 
-        public void Unsubscribe(IPointerInputListener pointerInputListener)
+        public void UnSubscribe(IPointerInputListener pointerInputListener)
         {
             _pointerInputListeners.Remove(pointerInputListener);
         }
