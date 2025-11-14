@@ -1,6 +1,7 @@
 using _Project.Scripts.GameScene.Services.Player;
 using _Project.Scripts.GameScene.UI.Widgets.Inventory;
 using _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop;
+using _Project.Scripts.GameScene.UI.Widgets.Workbench;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -12,6 +13,7 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
     public class PlayerInventoryView : ViewWindow
     {
         [SerializeField] private InventoryWidget _inventoryWidget;
+        [SerializeField] private WorkbenchWidget _workbenchWidget;
         [SerializeField] private PlayerInventoryViewTestButtonsWidget _testButtonsWidget;
         [SerializeField] private InventoryDragAndDropWidget _dragAndDropWidget;
 
@@ -21,6 +23,7 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
         {
             await base.OnInit();
             _inventoryWidget.Init();
+            _workbenchWidget.Init();
             _dragAndDropWidget.Init();
             return true;
         }
