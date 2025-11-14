@@ -7,13 +7,11 @@ using ZerglingUnityPlugins.Tools.Scripts.Mono;
 
 namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 {
-    public class InventorySlotDragAndDropWidgetView : MonoBehaviour, IMonoUpdatable
+    public class InventorySlotDragAndDropWidgetView : MonoBehaviour
     {
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private RectTransform _draggableRectTransform;
         [SerializeField] private InventorySlotWidget _draggedWidget;
-
-        [Inject] private IInputController _inputController;
 
         private Vector2 _ratioMultiplier; // ratio between canvas rect size and screen size
 
@@ -26,9 +24,10 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
             _ratioMultiplier = new Vector2(ratioMultiplierY, ratioMultiplierY);
         }
 
-        public void OnDragStart(IInventorySlotController inventorySlotController)
+        public void OnDragStart(IInventorySlotController inventorySlotController, Vector2 pointerPosition)
         {
             _draggedWidget.Setup(inventorySlotController);
+            OnPointerPositionInput(pointerPosition);
             _draggedWidget.SetActive(true);
         }
 
@@ -37,10 +36,8 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
             _draggedWidget.SetActive(false);
         }
 
-        public void OnUpdate(float deltaTime)
+        public void OnPointerPositionInput(Vector2 pointerPosition)
         {
-            var pointerPosition = _inputController.PointerPosition;
-            
             var anchoredX = pointerPosition.x * _ratioMultiplier.x;
             var anchoredY = pointerPosition.y * _ratioMultiplier.y;
             var anchoredPosition = new Vector2(anchoredX, anchoredY);

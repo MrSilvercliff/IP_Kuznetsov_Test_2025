@@ -1,16 +1,18 @@
 using _Project.Scripts.GameScene.DragAndDrop;
+using _Project.Scripts.GameScene.Input;
 using _Project.Scripts.GameScene.Inventory;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Zenject;
 using ZerglingUnityPlugins.Tools.Scripts.Mono;
 
 namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 {
-    public class InventorySlotDragAndDropWidget : MonoBehaviour, IMonoUpdatable, IInventorySlotDragAndDropListener
+    public class InventorySlotDragAndDropWidget : MonoBehaviour, IPointerInputListener, IInventorySlotDragAndDropListener
     {
         [SerializeField] private InventorySlotDragAndDropWidgetView _view;
 
-        [Inject] private IMonoUpdater _monoUpdater;
+        [Inject] private IInputController _inputController;
         [Inject] private IDragAndDropController _dragAndDropController;
 
         private bool _dragInProcess;
@@ -21,13 +23,13 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 
         private void OnEnable()
         {
-            _monoUpdater.Subscribe(this);
+            _inputController.Subscribe(this);
             _dragAndDropController.Subscribe(this);
         }
 
         private void OnDisable()
         {
-            _monoUpdater.UnSubscribe(this);
+            _inputController.UnSubscribe(this);
             _dragAndDropController.UnSubscribe(this);
         }
 
@@ -38,7 +40,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
             _view.Init();
         }
 
-        public void OnUpdate(float deltaTime)
+        public void OnPointerPositionInput(Vector2 pointerPosition)
         {
             if (!_dragInProcess)
                 return;
@@ -46,7 +48,15 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
             if (_dropInProcess)
                 return;
 
-            _view.OnUpdate(deltaTime);
+            _view.OnPointerPositionInput(pointerPosition);
+        }
+
+        public void OnPointerLeftClickInput(InputActionPhase actionPhase, Vector2 pointerPosition)
+        {
+            if (actionPhase == InputActionPhase.Canceled)
+            {
+                
+            }
         }
 
         public void OnDrag(IInventorySlotController inventorySlotController)
@@ -55,8 +65,9 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
                 return;
 
             _dragInProcess = true;
+            var pointerPosition = _inputController.PointerPosition;
             _dragInventorySlotController = inventorySlotController;
-            _view.OnDragStart(inventorySlotController);
+            _view.OnDragStart(inventorySlotController, pointerPosition);
         }
 
         public void OnDrop(IInventorySlotController inventorySlotController)
@@ -76,6 +87,11 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
             ProcessDrop();
 
             _dropInProcess = false;
+        }
+
+        private void OnDrop(Vector2 pointerPosition)
+        { 
+            ProcessDrop();
         }
 
         private void ProcessDrop()
