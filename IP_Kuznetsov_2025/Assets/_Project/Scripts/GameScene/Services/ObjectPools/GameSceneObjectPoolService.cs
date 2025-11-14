@@ -13,6 +13,7 @@ namespace _Project.Scripts.GameScene.Services.ObjectPools
         InventorySlotController.Pool InventorySlotControllerPool { get; }
 
         InventorySlotWidget.Pool InventorySlotWidgetPool { get; }
+        InventorySlotDraggableWidget.Pool InventorySlotDraggableWidgetPool { get; }
     }
 
     public class GameSceneObjectPoolService : IGameSceneObjectPoolService
@@ -22,11 +23,13 @@ namespace _Project.Scripts.GameScene.Services.ObjectPools
         public InventorySlotController.Pool InventorySlotControllerPool => _inventorySlotControllerPool;
 
         public InventorySlotWidget.Pool InventorySlotWidgetPool => _inventorySlotWidgetPool;
+        public InventorySlotDraggableWidget.Pool InventorySlotDraggableWidgetPool => _inventorySlotDraggableWidgetPool;
 
         [Inject] private GameItem.Pool _gameItemPool;
         [Inject] private InventoryControllerPool _inventoryControllerPool;
         [Inject] private InventorySlotController.Pool _inventorySlotControllerPool;
 
         [Inject] private InventorySlotWidget.Pool _inventorySlotWidgetPool;
+        [Inject] private InventorySlotDraggableWidget.Pool _inventorySlotDraggableWidgetPool;
     }
 }

@@ -111,8 +111,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneContext: {fileID: 1952477084617600295}
+  _dragAndDropConfig: {fileID: 11400000, guid: 6053e044112ace045b1273e227c129c4, type: 2}
   _objectPoolContainer: {fileID: 2702737585784118333}
   _unityInputHandler: {fileID: 3058553439731186719}
+--- !u!1 &6770428668658726787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977930066569356058}
+  m_Layer: 0
+  m_Name: '[Container] InventorySlotDraggableWidget'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1977930066569356058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770428668658726787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4182779357553544980}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7168133217056497943
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +176,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3860280809098488286}
+  - {fileID: 1977930066569356058}
   m_Father: {fileID: 6148178719762331818}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2702737585784118333
@@ -161,6 +194,10 @@ MonoBehaviour:
   _inventorySlotWidget:
     _prefab: {fileID: 3684262484113667504, guid: c8a17cc0faa26b74caf40c765e958a97, type: 3}
     _container: {fileID: 3860280809098488286}
+    _poolInitialSize: 0
+  _inventorySlotDraggableWidget:
+    _prefab: {fileID: 5909547802599567423, guid: cd118670bf4daa64daaa12e54169fceb, type: 3}
+    _container: {fileID: 1977930066569356058}
     _poolInitialSize: 0
 --- !u!1001 &7070889067898566843
 PrefabInstance:

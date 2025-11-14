@@ -1,3 +1,4 @@
+using _Project.Scripts.GameScene.Configs;
 using _Project.Scripts.GameScene.DragAndDrop;
 using _Project.Scripts.GameScene.GameItems;
 using _Project.Scripts.GameScene.Input;
@@ -6,6 +7,7 @@ using _Project.Scripts.GameScene.Services.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
 using _Project.Scripts.GameScene.Services.Player;
 using _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot;
+using System;
 using UnityEngine;
 using Zenject;
 using ZerglingUnityPlugins.ZenjectExtentions.SceneInstallers;
@@ -14,6 +16,7 @@ namespace _Project.Scripts.GameScene.Scene
 {
     public class GameSceneInstaller : SceneInstaller
     {
+        [SerializeField] private DragAndDropConfig _dragAndDropConfig;
         [SerializeField] private GameSceneObjectPoolContainer _objectPoolContainer;
         [SerializeField] private UnityInputHandler _unityInputHandler;
 
@@ -46,7 +49,8 @@ namespace _Project.Scripts.GameScene.Scene
         }
 
         private void BindDragAndDrop()
-        { 
+        {
+            Container.Bind<IDragAndDropConfig>().FromInstance(_dragAndDropConfig).AsSingle();
             Container.Bind<IDragAndDropController>().To<DragAndDropController>().AsSingle();
         }
 
@@ -72,6 +76,7 @@ namespace _Project.Scripts.GameScene.Scene
         private void BindMonoPools()
         { 
             BindInventorySlotWidgetPool();
+            BindInventorySlotDraggableWidgetPool();
         }
 
         private void BindInventorySlotWidgetPool()
@@ -83,6 +88,20 @@ namespace _Project.Scripts.GameScene.Scene
             var initSize = objectPoolItem.PoolInitialSize;
 
             Container.BindMemoryPool<InventorySlotWidget, InventorySlotWidget.Pool>()
+                .WithInitialSize(initSize)
+                .FromComponentInNewPrefab(prefab)
+                .UnderTransform(container);
+        }
+
+        private void BindInventorySlotDraggableWidgetPool()
+        {
+            var objectPoolItem = _objectPoolContainer.InventorySlotDraggableWidget;
+
+            var prefab = objectPoolItem.Prefab;
+            var container = objectPoolItem.Container;
+            var initSize = objectPoolItem.PoolInitialSize;
+
+            Container.BindMemoryPool<InventorySlotDraggableWidget, InventorySlotDraggableWidget.Pool>()
                 .WithInitialSize(initSize)
                 .FromComponentInNewPrefab(prefab)
                 .UnderTransform(container);
