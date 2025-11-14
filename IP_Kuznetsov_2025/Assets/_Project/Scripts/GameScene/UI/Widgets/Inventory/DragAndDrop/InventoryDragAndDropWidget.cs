@@ -55,16 +55,6 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
             _view.OnPointerPositionInput(pointerPosition);
         }
 
-        public void OnPointerLeftClickInput(InputActionPhase actionPhase, Vector2 pointerPosition)
-        {
-            /*
-            if (actionPhase != InputActionPhase.Canceled)
-                return;
-
-            OnDrop(pointerPosition);
-            */
-        }
-
         public void OnDrag(IInventorySlotController inventorySlotController)
         {
             if (_dropInProcess)
