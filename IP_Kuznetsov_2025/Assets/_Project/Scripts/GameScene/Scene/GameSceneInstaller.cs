@@ -1,3 +1,4 @@
+using _Project.Scripts.GameScene.DragAndDrop;
 using _Project.Scripts.GameScene.GameItems;
 using _Project.Scripts.GameScene.Input;
 using _Project.Scripts.GameScene.Inventory;
@@ -20,6 +21,8 @@ namespace _Project.Scripts.GameScene.Scene
         {
             BindInput();
 
+            BindDragAndDrop();
+
             BindConfigs();
 
             BindObjectPools();
@@ -40,6 +43,11 @@ namespace _Project.Scripts.GameScene.Scene
         { 
             Container.Bind<IInputController>().To<InputController>().AsSingle();
             Container.Bind<IInputHandler>().FromInstance(_unityInputHandler).AsSingle();
+        }
+
+        private void BindDragAndDrop()
+        { 
+            Container.Bind<IDragAndDropController>().To<DragAndDropController>().AsSingle();
         }
 
         private void BindConfigs()
