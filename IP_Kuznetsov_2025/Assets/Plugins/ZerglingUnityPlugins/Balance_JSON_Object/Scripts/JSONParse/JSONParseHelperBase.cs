@@ -172,6 +172,10 @@ namespace ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse
         private object ParseString(JSONObject array, int index)
         {
             var result = array[index].stringValue;
+            
+            if (result == "null")
+                return string.Empty;
+
             return result;
         }
 
