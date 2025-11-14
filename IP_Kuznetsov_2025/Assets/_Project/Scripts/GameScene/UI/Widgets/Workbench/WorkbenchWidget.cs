@@ -1,10 +1,13 @@
-using _Project.Scripts.GameScene.Inventory;
-using _Project.Scripts.GameScene.Services.ObjectPools;
+using _Project.Scripts.GameScene.Services.Craft;
+using _Project.Scripts.GameScene.UI.Events;
 using _Project.Scripts.GameScene.UI.Widgets.Inventory;
 using _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using ZerglingUnityPlugins.Tools.Scripts.EventBus.Async;
 
 namespace _Project.Scripts.GameScene.UI.Widgets.Workbench
 {
@@ -14,39 +17,54 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Workbench
         [SerializeField] private InventorySlotWidget _resultItemSlotWidget;
         [SerializeField] private Button _buttonCraft;
 
-        [Inject] private IGameSceneObjectPoolService _objectPoolService;
-
-        private IInventoryController _inventoryController;
-        private IInventorySlotController _resultItemSlotController;
+        [Inject] private IEventBusAsync _eventBus;
+        [Inject] private ICraftService _craftService;
 
         private void Awake()
         {
             _buttonCraft.onClick.AddListener(OnButtonCraftClick);
         }
 
+        private void OnEnable()
+        {
+            _eventBus.Subscribe<CraftResultItemChangedEvent>(OnCraftResultItemChangedEvent);
+        }
+
+        private void OnDisable()
+        {
+            _eventBus.UnSubscribe<CraftResultItemChangedEvent>(OnCraftResultItemChangedEvent);
+        }
+
         public void Init()
         {
-            InitInventoryWidget();
-            InitResultItemSlotWidget();
-        }
-
-        private void InitInventoryWidget()
-        {
-            var inventoryControllerPool = _objectPoolService.InventoryControllerPool;
-            _inventoryController = inventoryControllerPool.SpawnWorkbenchInventoryController();
             _inventoryWidget.Init();
-            _inventoryWidget.Setup(_inventoryController);
         }
 
-        private void InitResultItemSlotWidget()
+        public void Setup()
+        { 
+            RefreshInventoryWidget();
+            RefreshResultItemSlotWidget();
+        }
+
+        private void RefreshInventoryWidget()
         {
-            var inventorySlotControllerPool = _objectPoolService.InventorySlotControllerPool;
-            _resultItemSlotController = inventorySlotControllerPool.Spawn();
-            _resultItemSlotWidget.Setup(_resultItemSlotController);
+            var inventoryController = _craftService.InventoryService.InventoryController;
+            _inventoryWidget.Setup(inventoryController);
+        }
+
+        private void RefreshResultItemSlotWidget()
+        {
+            var craftResultSlotController = _craftService.InventoryService.ResultItemSlotController;
+            _resultItemSlotWidget.Setup(craftResultSlotController);
         }
 
         private void OnButtonCraftClick()
         { 
+        }
+
+        private async Task OnCraftResultItemChangedEvent(CraftResultItemChangedEvent evnt)
+        {
+            RefreshResultItemSlotWidget();
         }
     }
 }

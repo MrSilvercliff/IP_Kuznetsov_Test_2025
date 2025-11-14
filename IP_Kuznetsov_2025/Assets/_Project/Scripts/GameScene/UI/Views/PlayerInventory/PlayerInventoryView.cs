@@ -33,6 +33,7 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
             var playerInventoryController = _playerService.Inventory.InventoryController;
             _inventoryWidget.Setup(playerInventoryController);
             _testButtonsWidget.Setup(playerInventoryController);
+            _workbenchWidget.Setup();
             return Task.FromResult(true);
         }
     }
