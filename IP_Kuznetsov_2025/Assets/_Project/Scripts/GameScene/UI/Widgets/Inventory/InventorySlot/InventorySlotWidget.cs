@@ -15,11 +15,11 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
     public class InventorySlotWidget : ProjectMonoBehaviour, IPoolable
     {
         [Header("INVENTORY SLOT WIDGET")]
-        [SerializeField] private InventorySlotWidgetView _view;
+        [SerializeField] protected InventorySlotWidgetView _view;
 
         [Inject] private IEventBusAsync _eventBus;
 
-        private IInventorySlotController _inventorySlotController;
+        protected IInventorySlotController _inventorySlotController;
 
         private void OnEnable()
         {
@@ -37,7 +37,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
             _view.Refresh(inventorySlotController);
         }
 
-        public void OnCreated()
+        public virtual void OnCreated()
         {
             RefreshInstanceId();
             _inventorySlotController = null;
@@ -47,7 +47,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
         {
         }
 
-        public void OnDespawned()
+        public virtual void OnDespawned()
         {
             _inventorySlotController = null;
         }
