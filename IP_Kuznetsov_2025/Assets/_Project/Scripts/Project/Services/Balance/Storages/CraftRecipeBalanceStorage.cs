@@ -33,7 +33,7 @@ namespace _Project.Scripts.Project.Services.Balance.Storages
         private void AddByCenterGameItemId(ICraftRecipeBalanceModel balanceModel)
         {
             var craftRecipeItemsId = balanceModel.CraftRecipeItemsId;
-            var centerItemIndex = Mathf.CeilToInt((float)craftRecipeItemsId.Count / 2);
+            var centerItemIndex = Mathf.FloorToInt((float)craftRecipeItemsId.Count / 2);
             var centerItemId = craftRecipeItemsId[centerItemIndex];
 
             if (!_craftRecipesByCenterGameItemId.TryGetValue(centerItemId, out var list))
