@@ -1,5 +1,6 @@
 using _Project.Scripts.GameScene.Services.Player;
 using _Project.Scripts.GameScene.UI.Widgets.Inventory;
+using _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -12,6 +13,7 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
     {
         [SerializeField] private InventoryWidget _inventoryWidget;
         [SerializeField] private PlayerInventoryViewTestButtonsWidget _testButtonsWidget;
+        [SerializeField] private InventorySlotDragAndDropWidget _dragAndDropWidget;
 
         [Inject] private IPlayerService _playerService;
 
@@ -19,6 +21,7 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
         {
             await base.OnInit();
             _inventoryWidget.Init();
+            _dragAndDropWidget.Init();
             return true;
         }
 
