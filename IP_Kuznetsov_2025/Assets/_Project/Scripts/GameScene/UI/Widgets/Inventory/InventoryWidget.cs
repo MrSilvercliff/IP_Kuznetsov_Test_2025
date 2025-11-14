@@ -15,7 +15,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
         [Inject] private IGameSceneObjectPoolService _gameSceneObjectPoolService;
 
         private IInventoryController _inventoryController;
-        private List<InventorySlotWidget> _inventorySlotWidgets;
+        private List<InventorySlotDraggableWidget> _inventorySlotWidgets;
 
         public void Init()
         {
@@ -36,7 +36,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
 
         private void SetupSlotWidgets()
         {
-            var inventorySlotWidgetPool = _gameSceneObjectPoolService.InventorySlotWidgetPool;
+            var inventorySlotWidgetPool = _gameSceneObjectPoolService.InventorySlotDraggableWidgetPool;
             var slotControllers = _inventoryController.SlotControllers;
 
             for (int i = 0; i < slotControllers.Count; i++)
@@ -57,7 +57,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
 
         private void FlushSlotWidgets()
         {
-            var inventorySlotWidgetPool = _gameSceneObjectPoolService.InventorySlotWidgetPool;
+            var inventorySlotWidgetPool = _gameSceneObjectPoolService.InventorySlotDraggableWidgetPool;
 
             for (int i = 0; i < _inventorySlotWidgets.Count; i++)
             {
