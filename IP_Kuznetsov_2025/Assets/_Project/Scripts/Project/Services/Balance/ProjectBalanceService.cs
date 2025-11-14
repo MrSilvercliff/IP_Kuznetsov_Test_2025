@@ -9,18 +9,18 @@ namespace _Project.Scripts.Project.Services.Balance
 {
     public interface IProjectBalanceService : IBalanceServiceAbstractAsync
     {
-        IInventoryBalanceStorage Inventory { get; }
+        IInventoryConfigBalanceStorage InventoryConfig { get; }
         IGameItemBalanceStorage GameItems { get; }
     }
 
     public class ProjectBalanceService : BalanceServiceAbstractAsync, IProjectBalanceService
     {
-        public IInventoryBalanceStorage Inventory { get; }
+        public IInventoryConfigBalanceStorage InventoryConfig { get; }
         public IGameItemBalanceStorage GameItems { get; }
 
         public ProjectBalanceService() 
         {
-            Inventory = new InventoryBalanceStorage();
+            InventoryConfig = new InventoryConfigBalanceStorage();
             GameItems = new GameItemBalanceStorage();
         }
 
@@ -28,7 +28,7 @@ namespace _Project.Scripts.Project.Services.Balance
         {
             var result = new HashSet<IProjectService>();
 
-            result.Add(Inventory);
+            result.Add(InventoryConfig);
             result.Add(GameItems);
 
             return result;

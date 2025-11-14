@@ -23,7 +23,7 @@ namespace _Project.Scripts.GameScene.Inventory
 
         private void FillInventoryControllerSlots(IInventoryController inventoryController)
         { 
-            var slotsCount = _balanceService.Inventory.SlotsCount;
+            var slotsCount = _balanceService.InventoryConfig.SlotsCount;
             var slotControllerPool = _gameSceneObjectPoolService.InventorySlotControllerPool;
 
             var slotControllersList = (List<IInventorySlotController>)inventoryController.SlotControllers;
