@@ -1,3 +1,4 @@
+using _Project.Scripts.GameScene.Services.Craft;
 using _Project.Scripts.GameScene.Services.Inventory;
 using _Project.Scripts.GameScene.Services.Player;
 using _Project.Scripts.Project.Services.ServiceInit;
@@ -32,6 +33,7 @@ namespace _Project.Scripts.GameScene.Scene
 
         [Inject] private IPlayerService _playerService;
         [Inject] private IInventoryService _inventoryService;
+        [Inject] private ICraftService _craftService;
 
         #endregion Second
 
@@ -73,6 +75,7 @@ namespace _Project.Scripts.GameScene.Scene
         {
             AddService(_playerService);
             AddService(_inventoryService);
+            AddService(_craftService);
 
             var result = await InitServices();
             return result;

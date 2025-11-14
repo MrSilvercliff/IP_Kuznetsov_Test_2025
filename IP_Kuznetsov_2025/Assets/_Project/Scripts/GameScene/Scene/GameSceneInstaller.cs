@@ -3,6 +3,7 @@ using _Project.Scripts.GameScene.DragAndDrop;
 using _Project.Scripts.GameScene.GameItems;
 using _Project.Scripts.GameScene.Input;
 using _Project.Scripts.GameScene.Inventory;
+using _Project.Scripts.GameScene.Services.Craft;
 using _Project.Scripts.GameScene.Services.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
 using _Project.Scripts.GameScene.Services.Player;
@@ -33,6 +34,8 @@ namespace _Project.Scripts.GameScene.Scene
             BindPlayerServices();
 
             BindInventoryServices();
+
+            BindCraftServices();
 
             BindServiceIniter();
         }
@@ -120,6 +123,13 @@ namespace _Project.Scripts.GameScene.Scene
             Container.Bind<IInventoryItemRemoveService>().To<InventoryItemRemoveService>().AsSingle();
             Container.Bind<IInventoryItemMoveService>().To<InventoryItemMoveService>().AsSingle();
             Container.Bind<IInventoryService>().To<InventoryService>().AsSingle();
+        }
+
+        private void BindCraftServices()
+        {
+            Container.Bind<ICraftInventoryService>().To<CraftInventoryService>().AsSingle();
+            Container.Bind<ICraftInventoryAnalyzeService>().To<CraftInventoryAnalyzeService>().AsSingle();
+            Container.Bind<ICraftService>().To<CraftService>().AsSingle();
         }
     }
 }
