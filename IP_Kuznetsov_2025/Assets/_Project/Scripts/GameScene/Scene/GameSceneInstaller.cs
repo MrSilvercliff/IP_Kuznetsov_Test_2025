@@ -118,6 +118,7 @@ namespace _Project.Scripts.GameScene.Scene
             Container.Bind<IInventorySlotService>().To<InventorySlotService>().AsSingle();
             Container.Bind<IInventoryItemAddService>().To<InventoryItemAddService>().AsSingle();
             Container.Bind<IInventoryItemRemoveService>().To<InventoryItemRemoveService>().AsSingle();
+            Container.Bind<IInventoryItemMoveService>().To<InventoryItemMoveService>().AsSingle();
             Container.Bind<IInventoryService>().To<InventoryService>().AsSingle();
         }
     }
