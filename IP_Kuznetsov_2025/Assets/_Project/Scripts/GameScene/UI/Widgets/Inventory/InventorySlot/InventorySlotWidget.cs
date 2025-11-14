@@ -10,7 +10,7 @@ using ZerglingUnityPlugins.Tools.Scripts.EventBus.Async;
 using ZerglingUnityPlugins.Tools.Scripts.ObjectPool;
 using IPoolable = ZerglingUnityPlugins.Tools.Scripts.ObjectPool.IPoolable;
 
-namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
+namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
 {
     public class InventorySlotWidget : ProjectMonoBehaviour, IPoolable
     {

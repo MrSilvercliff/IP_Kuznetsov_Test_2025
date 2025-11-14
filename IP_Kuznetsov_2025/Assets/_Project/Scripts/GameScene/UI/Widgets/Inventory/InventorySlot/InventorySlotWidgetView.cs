@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
+namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
 {
     public class InventorySlotWidgetView : MonoBehaviour
     {

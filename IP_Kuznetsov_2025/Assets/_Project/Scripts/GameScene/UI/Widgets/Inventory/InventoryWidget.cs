@@ -1,5 +1,6 @@
 using _Project.Scripts.GameScene.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
+using _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot;
 using _Project.Scripts.Project.Extensions;
 using System.Collections.Generic;
 using UnityEngine;

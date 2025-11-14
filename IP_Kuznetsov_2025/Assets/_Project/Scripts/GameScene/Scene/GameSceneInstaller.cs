@@ -5,7 +5,7 @@ using _Project.Scripts.GameScene.Inventory;
 using _Project.Scripts.GameScene.Services.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
 using _Project.Scripts.GameScene.Services.Player;
-using _Project.Scripts.GameScene.UI.Widgets.Inventory;
+using _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot;
 using UnityEngine;
 using Zenject;
 using ZerglingUnityPlugins.ZenjectExtentions.SceneInstallers;

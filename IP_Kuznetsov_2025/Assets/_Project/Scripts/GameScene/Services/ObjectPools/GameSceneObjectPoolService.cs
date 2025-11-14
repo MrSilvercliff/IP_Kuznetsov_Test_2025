@@ -1,6 +1,6 @@
 using _Project.Scripts.GameScene.GameItems;
 using _Project.Scripts.GameScene.Inventory;
-using _Project.Scripts.GameScene.UI.Widgets.Inventory;
+using _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot;
 using UnityEngine;
 using Zenject;
 
