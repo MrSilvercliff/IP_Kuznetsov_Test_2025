@@ -33,24 +33,27 @@ namespace _Project.Scripts.GameScene.Inventory
             FlushInventoryControllerSlots(item);
         }
 
-        private void FillInventoryControllerSlots(IInventoryController inventoryController, int slotsCount)
+        private void FillInventoryControllerSlots(InventoryController inventoryController, int slotsCount)
         { 
             var slotControllerPool = _gameSceneObjectPoolService.InventorySlotControllerPool;
 
-            var slotControllersList = (List<IInventorySlotController>)inventoryController.SlotControllers;
+            var slotControllersList = new List<IInventorySlotController>();
 
             for (int i = 0; i < slotsCount; i++)
             {
                 var slotController = slotControllerPool.Spawn();
+                slotController.SetItem(null);
                 slotControllersList.Add(slotController);
             }
+
+            inventoryController.Setup(slotControllersList);
         }
 
-        private void FlushInventoryControllerSlots(IInventoryController inventoryController)
+        private void FlushInventoryControllerSlots(InventoryController inventoryController)
         {
             var slotControllerPool = _gameSceneObjectPoolService.InventorySlotControllerPool;
 
-            var slotControllersList = (List<IInventorySlotController>)inventoryController.SlotControllers;
+            var slotControllersList = inventoryController.SlotControllers;
 
             for (int i = 0; i < slotControllersList.Count; i++)
             { 
@@ -58,7 +61,7 @@ namespace _Project.Scripts.GameScene.Inventory
                 slotControllerPool.Despawn(slotController);
             }
 
-            slotControllersList.Clear();
+            inventoryController.Flush();
         }
     }
 }

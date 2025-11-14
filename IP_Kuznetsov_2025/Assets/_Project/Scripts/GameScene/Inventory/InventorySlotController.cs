@@ -1,11 +1,14 @@
 using _Project.Scripts.GameScene.GameItems;
+using System;
 using UnityEngine;
 using Zenject;
 
 namespace _Project.Scripts.GameScene.Inventory
 {
     public interface IInventorySlotController
-    { 
+    {
+        event Action<IInventorySlotController> ItemChangedEvent;
+
         bool IsEmpty { get; }
         IGameItem Item { get; }
 
@@ -14,6 +17,8 @@ namespace _Project.Scripts.GameScene.Inventory
 
     public class InventorySlotController : IInventorySlotController
     {
+        public event Action<IInventorySlotController> ItemChangedEvent;
+
         public bool IsEmpty => _gameItem == null;
         public IGameItem Item => _gameItem;
 
@@ -27,14 +32,9 @@ namespace _Project.Scripts.GameScene.Inventory
         public void SetItem(IGameItem gameItem)
         {
             _gameItem = gameItem;
+            ItemChangedEvent?.Invoke(this);
         }
 
-        public class Pool : MemoryPool<InventorySlotController>
-        {
-            protected override void OnDespawned(InventorySlotController item)
-            {
-                item.SetItem(null);
-            }
-        }
+        public class Pool : MemoryPool<InventorySlotController> { }
     }
 }
