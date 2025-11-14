@@ -1,4 +1,5 @@
 using _Project.Scripts.GameScene.GameItems;
+using _Project.Scripts.GameScene.Input;
 using _Project.Scripts.GameScene.Inventory;
 using _Project.Scripts.GameScene.Services.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
@@ -13,9 +14,12 @@ namespace _Project.Scripts.GameScene.Scene
     public class GameSceneInstaller : SceneInstaller
     {
         [SerializeField] private GameSceneObjectPoolContainer _objectPoolContainer;
+        [SerializeField] private UnityInputHandler _unityInputHandler;
 
         protected override void OnInstallBindings()
         {
+            BindInput();
+
             BindConfigs();
 
             BindObjectPools();
@@ -30,6 +34,12 @@ namespace _Project.Scripts.GameScene.Scene
         private void BindServiceIniter()
         {
             Container.Bind<IGameSceneServiceIniter>().To<GameSceneServiceIniter>().AsSingle();
+        }
+
+        private void BindInput()
+        { 
+            Container.Bind<IInputController>().To<InputController>().AsSingle();
+            Container.Bind<IInputHandler>().FromInstance(_unityInputHandler).AsSingle();
         }
 
         private void BindConfigs()
