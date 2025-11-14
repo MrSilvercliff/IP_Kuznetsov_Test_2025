@@ -64,14 +64,6 @@ namespace _Project.Scripts.GameScene.Input
                 _pointerInputListeners[i].OnPointerPositionInput(PointerPosition);
         }
 
-        public void OnPointerLeftClickInput(InputActionPhase actionPhase, Vector2 pointerPosition)
-        {
-            Debug.Log($"phase = {actionPhase} ; pointer position = {PointerPosition}");
-
-            for (int i = 0; i < _pointerInputListeners.Count; i++)
-                _pointerInputListeners[i].OnPointerLeftClickInput(actionPhase, PointerPosition);
-        }
-
         #endregion Pointer_Input
     }
 }
