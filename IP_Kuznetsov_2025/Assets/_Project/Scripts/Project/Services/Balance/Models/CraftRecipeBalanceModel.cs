@@ -23,6 +23,7 @@ namespace _Project.Scripts.Project.Services.Balance.Models
 
         protected override void OnTrySetup(JSONObject json, IJSONParseHelper parseHelper)
         {
+            _id = json["id"].stringValue;
             CraftRecipeItemsId = parseHelper.ParseList<string>(json, "recipe_game_items_id");
             CraftRecipeItemsCount = parseHelper.ParseList<int>(json, "recipe_game_items_count");
             ResultGameItemId = json["result_game_item_id"].stringValue;
