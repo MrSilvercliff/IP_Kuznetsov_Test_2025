@@ -7,7 +7,7 @@ using ZerglingUnityPlugins.Tools.Scripts.Mono;
 
 namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 {
-    public class InventorySlotDragAndDropWidgetView : MonoBehaviour
+    public class InventoryDragAndDropWidgetView : MonoBehaviour
     {
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private RectTransform _draggableRectTransform;

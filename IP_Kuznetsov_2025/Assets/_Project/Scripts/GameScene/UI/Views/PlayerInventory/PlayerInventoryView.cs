@@ -13,7 +13,7 @@ namespace _Project.Scripts.GameScene.UI.Views.PlayerInventory
     {
         [SerializeField] private InventoryWidget _inventoryWidget;
         [SerializeField] private PlayerInventoryViewTestButtonsWidget _testButtonsWidget;
-        [SerializeField] private InventorySlotDragAndDropWidget _dragAndDropWidget;
+        [SerializeField] private InventoryDragAndDropWidget _dragAndDropWidget;
 
         [Inject] private IPlayerService _playerService;
 

@@ -6,19 +6,24 @@ using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.AsyncSync;
 
 namespace _Project.Scripts.GameScene.DragAndDrop
 {
-    public interface IDragAndDropController : IProjectService, IInventorySlotDragAndDropListener
+    public interface IDragAndDropController : IProjectService, IInventoryDragAndDropListener
     {
-        void Subscribe(IInventorySlotDragAndDropListener inventorySlotDragAndDropListener);
-        void UnSubscribe(IInventorySlotDragAndDropListener inventorySlotDragAndDropListener);
+        void Subscribe(IInventoryDragAndDropListener inventorySlotDragAndDropListener);
+        void UnSubscribe(IInventoryDragAndDropListener inventorySlotDragAndDropListener);
+
+        void Subscribe(IInventoryDragAndDropHandleListener inventorySlotDragAndDropHandleListener);
+        void UnSubscribe(IInventoryDragAndDropHandleListener inventorySlotDragAndDropHandleListener);
     }
 
     public class DragAndDropController : IDragAndDropController
     {
-        private List<IInventorySlotDragAndDropListener> _inventorySlotDragAndDropListeners;
+        private List<IInventoryDragAndDropListener> _inventorySlotDragAndDropListeners;
+        private List<IInventoryDragAndDropHandleListener> _inventorySlotDragAndHandleDropListeners;
 
         public DragAndDropController()
         {
             _inventorySlotDragAndDropListeners = new();
+            _inventorySlotDragAndHandleDropListeners = new();
         }
 
         public Task<bool> Init()
@@ -33,7 +38,7 @@ namespace _Project.Scripts.GameScene.DragAndDrop
 
         #region Listeners_Subscribes
 
-        public void Subscribe(IInventorySlotDragAndDropListener inventorySlotDragAndDropListener)
+        public void Subscribe(IInventoryDragAndDropListener inventorySlotDragAndDropListener)
         {
             if (_inventorySlotDragAndDropListeners.Contains(inventorySlotDragAndDropListener))
                 return;
@@ -41,9 +46,22 @@ namespace _Project.Scripts.GameScene.DragAndDrop
             _inventorySlotDragAndDropListeners.Add(inventorySlotDragAndDropListener);
         }
 
-        public void UnSubscribe(IInventorySlotDragAndDropListener inventorySlotDragAndDropListener)
+        public void UnSubscribe(IInventoryDragAndDropListener inventorySlotDragAndDropListener)
         {
             _inventorySlotDragAndDropListeners.Remove(inventorySlotDragAndDropListener);
+        }
+
+        public void Subscribe(IInventoryDragAndDropHandleListener inventorySlotDragAndDropHandleListener)
+        {
+            if (_inventorySlotDragAndHandleDropListeners.Contains(inventorySlotDragAndDropHandleListener))
+                return;
+
+            _inventorySlotDragAndHandleDropListeners.Add(inventorySlotDragAndDropHandleListener);
+        }
+
+        public void UnSubscribe(IInventoryDragAndDropHandleListener inventorySlotDragAndDropHandleListener)
+        {
+            _inventorySlotDragAndHandleDropListeners.Remove(inventorySlotDragAndDropHandleListener);
         }
 
         #endregion Listeners_Subscribes
@@ -52,6 +70,9 @@ namespace _Project.Scripts.GameScene.DragAndDrop
 
         public void OnDrag(IInventorySlotController inventorySlotController)
         {
+            for (int i = 0; i < _inventorySlotDragAndHandleDropListeners.Count; i++)
+                _inventorySlotDragAndHandleDropListeners[i].OnDragStart();
+
             for (int i = 0; i < _inventorySlotDragAndDropListeners.Count; i++) 
                 _inventorySlotDragAndDropListeners[i].OnDrag(inventorySlotController);
         }
@@ -60,6 +81,18 @@ namespace _Project.Scripts.GameScene.DragAndDrop
         {
             for (int i = 0; i < _inventorySlotDragAndDropListeners.Count; i++)
                 _inventorySlotDragAndDropListeners[i].OnDrop(inventorySlotController);
+
+            for (int i = 0; i < _inventorySlotDragAndHandleDropListeners.Count; i++)
+                _inventorySlotDragAndHandleDropListeners[i].OnDragEnd();
+        }
+
+        public void OnDrop(bool isSafe)
+        {
+            for (int i = 0; i < _inventorySlotDragAndDropListeners.Count; i++)
+                _inventorySlotDragAndDropListeners[i].OnDrop(isSafe);
+
+            for (int i = 0; i < _inventorySlotDragAndHandleDropListeners.Count; i++)
+                _inventorySlotDragAndHandleDropListeners[i].OnDragEnd();
         }
 
         #endregion Inventory_Slot_DragAndDrop_Listener

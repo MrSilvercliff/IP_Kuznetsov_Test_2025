@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace _Project.Scripts.GameScene.DragAndDrop
 {
-    public interface IInventorySlotDragAndDropListener
+    public interface IInventoryDragAndDropListener
     {
         void OnDrag(IInventorySlotController inventorySlotController);
         void OnDrop(IInventorySlotController inventorySlotController);
+        void OnDrop(bool isSafe);
     }
 }
