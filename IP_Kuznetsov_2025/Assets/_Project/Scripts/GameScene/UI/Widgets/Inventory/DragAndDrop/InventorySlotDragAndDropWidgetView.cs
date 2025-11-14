@@ -20,7 +20,10 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
         public void Init()
         {
             var screen = new Vector2(Screen.width, Screen.height);
-            _ratioMultiplier = new Vector2(_rectTransform.rect.width / screen.x, _rectTransform.rect.height / screen.y);
+            
+            var ratioMultiplierX = _rectTransform.rect.width / screen.x;
+            var ratioMultiplierY = _rectTransform.rect.height / screen.y;
+            _ratioMultiplier = new Vector2(ratioMultiplierY, ratioMultiplierY);
         }
 
         public void OnDragStart(IInventorySlotController inventorySlotController)
@@ -32,7 +35,6 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
         public void OnDragStop()
         { 
             _draggedWidget.SetActive(false);
-            _draggedWidget.Setup(null);
         }
 
         public void OnUpdate(float deltaTime)

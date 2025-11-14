@@ -34,13 +34,12 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
         public void Init()
         {
             _dragInProcess = false;
+            _dropInProcess = false;
+            _view.Init();
         }
 
         public void OnUpdate(float deltaTime)
         {
-            if (_dragInProcess)
-                return;
-
             if (_dropInProcess)
                 return;
 
