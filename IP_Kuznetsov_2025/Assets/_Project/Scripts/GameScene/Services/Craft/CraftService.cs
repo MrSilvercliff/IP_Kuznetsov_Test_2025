@@ -7,10 +7,13 @@ namespace _Project.Scripts.GameScene.Services.Craft
 {
     public interface ICraftService : IProjectService
     { 
+        ICraftInventoryService InventoryService { get; }
     }
 
     public class CraftService : ICraftService
     {
+        public ICraftInventoryService InventoryService => _craftInventoryService;
+
         [Inject] private ICraftInventoryService _craftInventoryService;
         [Inject] private ICraftInventoryAnalyzeService _craftInventoryAnalyzeService;
 
