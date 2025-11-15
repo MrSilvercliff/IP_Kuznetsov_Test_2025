@@ -1,4 +1,4 @@
-using _Project.Scripts.GameScene.GameItems;
+using _Project.Scripts.GameScene.Inventory;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -8,32 +8,37 @@ namespace _Project.Scripts.GameScene.Services.Tooltip
 {
     public interface ITooltipService : IProjectService
     {
-        void ShowGameItemTooltip(IGameItem gameItem, Vector3 position);
-        void HideGameItemTooltip(IGameItem gameItem, Vector3 position);
+        void ShowInventorySlotTooltip(IInventorySlotController inventorySlotController, Vector3 position);
+        void HideInventorySlotTooltip(IInventorySlotController inventorySlotController);
     }
 
     public class TooltipService : ITooltipService
     {
+        [Inject] private ITooltipRepository _repository;
         [Inject] private ITooltipShowService _showService;
 
         public Task<bool> Init()
         {
+            _repository.Init();
+            _showService.Init();
             return Task.FromResult(true);
         }
 
         public bool Flush()
         {
+            _showService.Flush();
+            _repository.Flush();
             return true;
         }
 
-        public void ShowGameItemTooltip(IGameItem gameItem, Vector3 position)
+        public void ShowInventorySlotTooltip(IInventorySlotController inventorySlotController, Vector3 position)
         {
-            _showService.ShowGameItemTooltip(gameItem, position);
+            _showService.ShowInventorySlotTooltip(inventorySlotController, position);
         }
 
-        public void HideGameItemTooltip(IGameItem gameItem, Vector3 position)
+        public void HideInventorySlotTooltip(IInventorySlotController inventorySlotController)
         {
-            _showService.HideGameItemTooltip(gameItem, position);
+            _showService.HideInventorySlotTooltip(inventorySlotController);
         }
     }
 }
