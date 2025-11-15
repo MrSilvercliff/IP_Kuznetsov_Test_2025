@@ -192,11 +192,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventorySlotWidget:
-    _prefab: {fileID: 3684262484113667504, guid: c8a17cc0faa26b74caf40c765e958a97, type: 3}
+    _prefab: {fileID: 4425275560064457564, guid: 6f8f975ea79923d4db92d5290dc1cb9a, type: 3}
     _container: {fileID: 3860280809098488286}
     _poolInitialSize: 0
   _inventorySlotDraggableWidget:
-    _prefab: {fileID: 5909547802599567423, guid: cd118670bf4daa64daaa12e54169fceb, type: 3}
+    _prefab: {fileID: 8404414869261444406, guid: 3f452eec0a68fa14880cff65a400ad3c, type: 3}
     _container: {fileID: 1977930066569356058}
     _poolInitialSize: 0
 --- !u!1001 &7070889067898566843
