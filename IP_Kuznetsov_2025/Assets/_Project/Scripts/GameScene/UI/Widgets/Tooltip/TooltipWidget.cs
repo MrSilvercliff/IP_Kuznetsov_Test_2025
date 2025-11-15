@@ -3,6 +3,7 @@ using _Project.Scripts.GameScene.Inventory;
 using _Project.Scripts.GameScene.Services.Tooltip;
 using _Project.Scripts.Project.Configs;
 using _Project.Scripts.Project.Extensions;
+using _Project.Scripts.Project.Monobeh;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +11,9 @@ using Zenject;
 
 namespace _Project.Scripts.GameScene.UI.Widgets.Tooltip
 {
-    public class TooltipWidget : MonoBehaviour
+    public class TooltipWidget : ProjectMonoBehaviour
     {
+        [Header("TOOLTIP WIDGET")]
         [SerializeField] private Image _itemIconImage;
         [SerializeField] private TMP_Text _itemNameText;
         [SerializeField] private TMP_Text _itemCountText;
@@ -58,6 +60,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Tooltip
 
         private void SetupCountText(IGameItem gameItem)
         {
+            _itemCountText.gameObject.SetActive(gameItem.IsStackable);
             var countText = $"(x{gameItem.Count})";
             _itemCountText.text = countText;
         }
