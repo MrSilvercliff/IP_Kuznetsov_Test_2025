@@ -34,7 +34,12 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
         public void Setup(IInventorySlotController inventorySlotController)
         { 
             _inventorySlotController = inventorySlotController;
-            _view.Refresh(inventorySlotController);
+            Refresh();
+        }
+
+        public void Refresh()
+        {
+            _view.Refresh(_inventorySlotController);
         }
 
         public virtual void OnCreated()

@@ -34,6 +34,15 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory
             FlushSlotWidgets();
         }
 
+        public void Refresh()
+        {
+            for (int i = 0; i < _inventorySlotWidgets.Count; i++)
+            {
+                var widget = _inventorySlotWidgets[i];
+                widget.Refresh();
+            }
+        }
+
         private void SetupSlotWidgets()
         {
             var inventorySlotWidgetPool = _gameSceneObjectPoolService.InventorySlotDraggableWidgetPool;

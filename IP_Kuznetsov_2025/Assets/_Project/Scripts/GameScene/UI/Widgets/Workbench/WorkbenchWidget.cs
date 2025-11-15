@@ -28,6 +28,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Workbench
         private void OnEnable()
         {
             _eventBus.Subscribe<CraftResultItemChangedEvent>(OnCraftResultItemChangedEvent);
+            _eventBus.Subscribe<CraftSuccessEvent>(OnCraftSuccessEvent);
         }
 
         private void OnDisable()
@@ -42,21 +43,31 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Workbench
 
         public void Setup()
         { 
-            RefreshInventoryWidget();
-            RefreshResultItemSlotWidget();
+            SetupInventoryWidget();
+            SetupResultItemSlotWidget();
             RefreshCraftButton();
         }
 
-        private void RefreshInventoryWidget()
+        private void SetupInventoryWidget()
         {
             var inventoryController = _craftService.InventoryService.InventoryController;
             _inventoryWidget.Setup(inventoryController);
         }
 
-        private void RefreshResultItemSlotWidget()
+        private void SetupResultItemSlotWidget()
         {
             var craftResultSlotController = _craftService.InventoryService.ResultItemSlotController;
             _resultItemSlotWidget.Setup(craftResultSlotController);
+        }
+
+        private void RefreshInventoryWidget()
+        {
+            _inventoryWidget.Refresh();
+        }
+
+        private void RefreshResultItemSlotWidget()
+        {
+            _resultItemSlotWidget.Refresh();
         }
 
         private void RefreshCraftButton()
@@ -66,11 +77,19 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Workbench
         }
 
         private void OnButtonCraftClick()
-        { 
+        {
+            _craftService.CraftItem();
         }
 
         private async Task OnCraftResultItemChangedEvent(CraftResultItemChangedEvent evnt)
         {
+            RefreshResultItemSlotWidget();
+            RefreshCraftButton();
+        }
+
+        private async Task OnCraftSuccessEvent(CraftSuccessEvent @event)
+        {
+            RefreshInventoryWidget();
             RefreshResultItemSlotWidget();
             RefreshCraftButton();
         }
