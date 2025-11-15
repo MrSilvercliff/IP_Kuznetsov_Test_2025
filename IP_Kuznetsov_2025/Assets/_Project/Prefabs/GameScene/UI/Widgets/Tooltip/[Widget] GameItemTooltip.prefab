@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bad86375322d54e92d119adc1cbbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 1995170602738908017}
   _itemIconImage: {fileID: 1474502319440218216}
   _itemNameText: {fileID: 5748249994622219734}
   _itemCountText: {fileID: 4485874213760514594}
@@ -179,12 +180,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8915751277440214591}
+  m_Father: {fileID: 5271022784023970669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5576355282312673452
 CanvasRenderer:
@@ -241,12 +242,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 36
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 35
-  m_fontSizeMax: 40
+  m_fontSizeMax: 35
   m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -317,7 +318,6 @@ RectTransform:
   m_Children:
   - {fileID: 5838736487025020813}
   - {fileID: 5861804631500766392}
-  - {fileID: 136255159171526967}
   m_Father: {fileID: 5271022784023970669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -403,14 +403,15 @@ RectTransform:
   m_Children:
   - {fileID: 2537487353664941599}
   - {fileID: 8915751277440214591}
+  - {fileID: 136255159171526967}
   - {fileID: 183664785436290815}
   m_Father: {fileID: 1995170602738908017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 450, y: 0}
-  m_Pivot: {x: 1, y: 0}
+  m_SizeDelta: {x: 400, y: 0}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &4549421863979767533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +430,7 @@ MonoBehaviour:
     m_Top: 15
     m_Bottom: 20
   m_ChildAlignment: 3
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
