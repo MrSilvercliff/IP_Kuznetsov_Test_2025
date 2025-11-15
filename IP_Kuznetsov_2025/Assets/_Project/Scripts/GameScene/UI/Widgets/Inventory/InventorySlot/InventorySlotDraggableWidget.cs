@@ -11,11 +11,11 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
     public class InventorySlotDraggableWidget : InventorySlotWidget, IDragHandler, IEndDragHandler, IDropHandler
     {
         [Inject] private IDragAndDropConfig _dragAndDropConfig;
-        [Inject] private IDragAndDropController _dragAndDropController;
+        [Inject] protected IDragAndDropController _dragAndDropController;
 
         private InventorySlotDraggableWidgetView _draggableWidgetView;
 
-        private bool _isDragging;
+        protected bool _isDragging;
 
         public override void OnCreated()
         {
@@ -30,9 +30,12 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
             _isDragging = false;
         }
 
-        public void OnDrag(PointerEventData eventData)
+        public virtual void OnDrag(PointerEventData eventData)
         {
             if (_isDragging)
+                return;
+
+            if (_dragAndDropController.DragInProcess)
                 return;
 
             if (_inventorySlotController.IsEmpty)
@@ -42,18 +45,18 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
                 return;
 
             _isDragging = true;
-            _tooltipWidget.OnPointerExit(null);
+            _tooltipWidget?.OnPointerExit(null);
             _dragAndDropController.OnDrag(_inventorySlotController);
             _draggableWidgetView.OnDrag(eventData);
         }
 
-        public void OnEndDrag(PointerEventData eventData)
+        public virtual void OnEndDrag(PointerEventData eventData)
         {
             _isDragging = false;
             _draggableWidgetView.OnEndDrag(eventData);
         }
 
-        public void OnDrop(PointerEventData eventData)
+        public virtual void OnDrop(PointerEventData eventData)
         {
             _isDragging = false;
             _dragAndDropController.OnDrop(_inventorySlotController);
