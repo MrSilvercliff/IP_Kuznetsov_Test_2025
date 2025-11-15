@@ -16,6 +16,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
     {
         [Header("INVENTORY SLOT WIDGET")]
         [SerializeField] protected InventorySlotWidgetView _view;
+        [SerializeField] protected InventorySlotTooltipWidget _tooltipWidget;
 
         [Inject] private IEventBusAsync _eventBus;
 
@@ -34,6 +35,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
         public void Setup(IInventorySlotController inventorySlotController)
         { 
             _inventorySlotController = inventorySlotController;
+            _tooltipWidget?.Setup(inventorySlotController);
             Refresh();
         }
 

@@ -42,6 +42,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
                 return;
 
             _isDragging = true;
+            _tooltipWidget.OnPointerExit(null);
             _dragAndDropController.OnDrag(_inventorySlotController);
             _draggableWidgetView.OnDrag(eventData);
         }
