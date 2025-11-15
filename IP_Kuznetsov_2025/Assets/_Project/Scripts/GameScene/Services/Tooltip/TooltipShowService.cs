@@ -1,8 +1,10 @@
 using _Project.Scripts.GameScene.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
+using _Project.Scripts.GameScene.UI.Events;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
+using ZerglingUnityPlugins.Tools.Scripts.EventBus.Async;
 using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.AsyncSync;
 
 namespace _Project.Scripts.GameScene.Services.Tooltip
@@ -15,6 +17,7 @@ namespace _Project.Scripts.GameScene.Services.Tooltip
 
     public class TooltipShowService : ITooltipShowService
     {
+        [Inject] private IEventBusAsync _eventBus;
         [Inject] private IGameSceneObjectPoolService _objectPoolService;
         [Inject] private ITooltipRepository _repository;
 
@@ -35,17 +38,23 @@ namespace _Project.Scripts.GameScene.Services.Tooltip
             var tooltipInfo = tooltipInfoPool.Spawn();
             tooltipInfo.Setup(inventorySlotController, position);
             _repository.Add(inventorySlotController, tooltipInfo);
+
+            var evnt = new TooltipsChangedEvent();
+            _eventBus.Fire(evnt);
         }
 
         public void HideInventorySlotTooltip(IInventorySlotController inventorySlotController)
         {
-            var tryResult =  _repository.TryGet(inventorySlotController, out var tooltipInfo);
+            var tryResult = _repository.TryGet(inventorySlotController, out var tooltipInfo);
 
             if (!tryResult)
                 return;
 
             _repository.Remove(inventorySlotController);
             DespawnTooltip((TooltipInfo)tooltipInfo);
+
+            var evnt = new TooltipsChangedEvent();
+            _eventBus.Fire(evnt);
         }
 
         private void FlushTooltips()
