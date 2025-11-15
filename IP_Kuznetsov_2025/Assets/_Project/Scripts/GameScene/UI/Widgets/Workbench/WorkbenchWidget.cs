@@ -44,6 +44,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Workbench
         { 
             RefreshInventoryWidget();
             RefreshResultItemSlotWidget();
+            RefreshCraftButton();
         }
 
         private void RefreshInventoryWidget()
@@ -58,6 +59,12 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Workbench
             _resultItemSlotWidget.Setup(craftResultSlotController);
         }
 
+        private void RefreshCraftButton()
+        {
+            var craftResultSlotController = _craftService.InventoryService.ResultItemSlotController;
+            _buttonCraft.interactable = !craftResultSlotController.IsEmpty;
+        }
+
         private void OnButtonCraftClick()
         { 
         }
@@ -65,6 +72,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Workbench
         private async Task OnCraftResultItemChangedEvent(CraftResultItemChangedEvent evnt)
         {
             RefreshResultItemSlotWidget();
+            RefreshCraftButton();
         }
     }
 }
