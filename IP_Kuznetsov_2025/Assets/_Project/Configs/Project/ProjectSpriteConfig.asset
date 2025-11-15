@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44360de293e53f046804ad77dc2652be, type: 3}
+  m_Name: ProjectSpriteConfig
+  m_EditorClassIdentifier: 
+  _gameItemIcons:
+  - _spriteId: icon_resource_wood
+    _sprite: {fileID: 21300000, guid: 0413a298886afc748bd1f9410cbe7fad, type: 3}
+  - _spriteId: icon_resource_stone
+    _sprite: {fileID: 21300000, guid: ddcc10abeda47cd489b2391478697e4d, type: 3}
+  - _spriteId: icon_resource_iron
+    _sprite: {fileID: 21300000, guid: e5f650855aeb1304da87262ebd24cc71, type: 3}
+  - _spriteId: icon_resource_wood_stick
+    _sprite: {fileID: 21300000, guid: 7e710210e63389d408e6ad50e545a6e4, type: 3}
+  - _spriteId: icon_tool_axe
+    _sprite: {fileID: 21300000, guid: 8ce4ece11cfcfb14bb5e5146c3c2d982, type: 3}
+  - _spriteId: icon_tool_pickaxe
+    _sprite: {fileID: 21300000, guid: e2ecdcf0b85f17d49aaf2b5295cfe737, type: 3}
+  - _spriteId: icon_tool_hammer
+    _sprite: {fileID: 21300000, guid: 09c24ae923b8ccc4794ff256fffcd71d, type: 3}

@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "GameSceneInputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "a8e2d851-5648-471a-8ae3-d5a034293fd6",
+            "actions": [
+                {
+                    "name": "PointerPosition",
+                    "type": "Value",
+                    "id": "8547b484-3a0d-4ad8-ac16-b98fe3a54373",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7e336d29-d95c-4a09-82e6-29c9d323ed8a",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
