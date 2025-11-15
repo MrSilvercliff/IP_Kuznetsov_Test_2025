@@ -34,10 +34,22 @@ namespace _Project.Scripts.GameScene.Services.Tooltip
 
         public void ShowInventorySlotTooltip(IInventorySlotController inventorySlotController, Vector3 position)
         {
-            var tooltipInfoPool = _objectPoolService.TooltipInfoPool;
-            var tooltipInfo = tooltipInfoPool.Spawn();
-            tooltipInfo.Setup(inventorySlotController, position);
-            _repository.Add(inventorySlotController, tooltipInfo);
+            ITooltipInfo tooltipInfo = null;
+
+            var tryResult = _repository.TryGet(inventorySlotController, out tooltipInfo);
+
+            if (tryResult)
+            {
+                tooltipInfo.Setup(inventorySlotController, position);
+            }
+            else
+            {
+                var tooltipInfoPool = _objectPoolService.TooltipInfoPool;
+                tooltipInfo = tooltipInfoPool.Spawn();
+                tooltipInfo.Setup(inventorySlotController, position);
+
+                _repository.Add(inventorySlotController, tooltipInfo);
+            }
 
             var evnt = new TooltipsChangedEvent();
             _eventBus.Fire(evnt);
