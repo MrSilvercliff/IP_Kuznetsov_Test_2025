@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectPanels: []
   _startScenePanels: []
-  _gameScenePanels: []
+  _gameScenePanels:
+  - {fileID: 2066695132553329406, guid: 51740dc4888b7d04cb45e3a827a56a3b, type: 3}
