@@ -41,9 +41,11 @@ namespace Plugins.ZerglingUnityPlugins.Tools.Scripts.Repositories
         public bool TryGet(TKey key, out TItem item)
         {
             var result = _itemsDictionary.TryGetValue(key, out item);
-
+            
+            /*
             if (!result)
                 LogUtils.Error(this, $"Item with key [{key}] does not exist!");
+            */
 
             return result;
         }
