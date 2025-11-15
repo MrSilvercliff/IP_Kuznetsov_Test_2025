@@ -30,7 +30,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
             if (_inventorySlotController.IsEmpty)
                 return;
 
-            _tooltipService.ShowGameItemTooltip(_inventorySlotController.Item, _tooltipAnchor.position);
+            _tooltipService.ShowInventorySlotTooltip(_inventorySlotController, _tooltipAnchor.position);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -41,7 +41,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot
             if (_inventorySlotController.IsEmpty)
                 return;
 
-            _tooltipService.HideGameItemTooltip(_inventorySlotController.Item, _tooltipAnchor.position);
+            _tooltipService.HideInventorySlotTooltip(_inventorySlotController);
         }
     }
 }
