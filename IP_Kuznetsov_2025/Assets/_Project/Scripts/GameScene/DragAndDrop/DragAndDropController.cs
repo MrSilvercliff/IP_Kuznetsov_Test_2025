@@ -8,6 +8,8 @@ namespace _Project.Scripts.GameScene.DragAndDrop
 {
     public interface IDragAndDropController : IProjectService, IInventoryDragAndDropListener
     {
+        bool DragInProcess { get; }
+
         void Subscribe(IInventoryDragAndDropListener inventorySlotDragAndDropListener);
         void UnSubscribe(IInventoryDragAndDropListener inventorySlotDragAndDropListener);
 
@@ -17,11 +19,14 @@ namespace _Project.Scripts.GameScene.DragAndDrop
 
     public class DragAndDropController : IDragAndDropController
     {
+        public bool DragInProcess { get; private set; }
+
         private List<IInventoryDragAndDropListener> _inventorySlotDragAndDropListeners;
         private List<IInventoryDragAndDropHandleListener> _inventorySlotDragAndHandleDropListeners;
 
         public DragAndDropController()
         {
+            DragInProcess = false;
             _inventorySlotDragAndDropListeners = new();
             _inventorySlotDragAndHandleDropListeners = new();
         }
@@ -66,10 +71,17 @@ namespace _Project.Scripts.GameScene.DragAndDrop
 
         #endregion Listeners_Subscribes
 
+
+
         #region Inventory_Slot_DragAndDrop_Listener
 
         public void OnDrag(IInventorySlotController inventorySlotController)
         {
+            if (DragInProcess)
+                return;
+
+            DragInProcess = true;
+
             for (int i = 0; i < _inventorySlotDragAndHandleDropListeners.Count; i++)
                 _inventorySlotDragAndHandleDropListeners[i].OnDragStart();
 
@@ -79,20 +91,30 @@ namespace _Project.Scripts.GameScene.DragAndDrop
 
         public void OnDrop(IInventorySlotController inventorySlotController)
         {
+            if (!DragInProcess)
+                return;
+
             for (int i = 0; i < _inventorySlotDragAndDropListeners.Count; i++)
                 _inventorySlotDragAndDropListeners[i].OnDrop(inventorySlotController);
 
             for (int i = 0; i < _inventorySlotDragAndHandleDropListeners.Count; i++)
                 _inventorySlotDragAndHandleDropListeners[i].OnDragEnd();
+
+            DragInProcess = false;
         }
 
         public void OnDrop(bool isSafe)
         {
+            if (!DragInProcess)
+                return;
+
             for (int i = 0; i < _inventorySlotDragAndDropListeners.Count; i++)
                 _inventorySlotDragAndDropListeners[i].OnDrop(isSafe);
 
             for (int i = 0; i < _inventorySlotDragAndHandleDropListeners.Count; i++)
                 _inventorySlotDragAndHandleDropListeners[i].OnDragEnd();
+
+            DragInProcess = false;
         }
 
         #endregion Inventory_Slot_DragAndDrop_Listener
