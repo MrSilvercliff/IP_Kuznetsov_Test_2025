@@ -129,6 +129,7 @@ namespace _Project.Scripts.GameScene.Scene
         {
             Container.Bind<ICraftInventoryService>().To<CraftInventoryService>().AsSingle();
             Container.Bind<ICraftInventoryAnalyzeService>().To<CraftInventoryAnalyzeService>().AsSingle();
+            Container.Bind<ICraftProcessService>().To<CraftProcessService>().AsSingle();
             Container.Bind<ICraftService>().To<CraftService>().AsSingle();
         }
     }
