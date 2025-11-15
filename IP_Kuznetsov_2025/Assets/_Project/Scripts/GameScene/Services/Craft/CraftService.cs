@@ -8,6 +8,7 @@ namespace _Project.Scripts.GameScene.Services.Craft
     public interface ICraftService : IProjectService
     { 
         ICraftInventoryService InventoryService { get; }
+        void CraftItem();
     }
 
     public class CraftService : ICraftService
@@ -16,11 +17,13 @@ namespace _Project.Scripts.GameScene.Services.Craft
 
         [Inject] private ICraftInventoryService _craftInventoryService;
         [Inject] private ICraftInventoryAnalyzeService _craftInventoryAnalyzeService;
+        [Inject] private ICraftProcessService _craftProcessService;
 
         public async Task<bool> Init()
         {
             await _craftInventoryService.Init();
             await _craftInventoryAnalyzeService.Init();
+            await _craftProcessService.Init();
             return true;
         }
 
@@ -28,7 +31,13 @@ namespace _Project.Scripts.GameScene.Services.Craft
         {
             _craftInventoryAnalyzeService.Flush();
             _craftInventoryService.Flush();
+            _craftProcessService.Flush();
             return true;
+        }
+
+        public void CraftItem()
+        {
+            _craftProcessService.CraftItem();
         }
     }
 }

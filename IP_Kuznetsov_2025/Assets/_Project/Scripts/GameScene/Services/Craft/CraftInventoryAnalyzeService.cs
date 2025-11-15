@@ -73,6 +73,8 @@ namespace _Project.Scripts.GameScene.Services.Craft
 
             //Debug.LogError("AnalyzeInventory 3");
 
+            _inventoryService.SetActualCraftRecipe(actualCraftRecipe);
+
             var craftResultGameItemBalanceModel = GetCraftResultItem(actualCraftRecipe);
             var craftResultItemCount = actualCraftRecipe.ResultGameItemCount;
             SetCraftResultItem(craftResultGameItemBalanceModel, craftResultItemCount);
