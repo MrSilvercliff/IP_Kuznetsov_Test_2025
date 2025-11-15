@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 1774324131411455355}
   - component: {fileID: 3650752906392507915}
   - component: {fileID: 7055267480042349591}
+  - component: {fileID: 1410453662632488702}
   m_Layer: 5
   m_Name: '[View] PlayerInventory'
   m_TagString: Untagged
@@ -647,6 +648,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _windowGO: {fileID: 6512703449858837495}
+--- !u!114 &1410453662632488702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6512703449858837495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638b38047efb27c428a73bcc73cbaba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvas: {fileID: 2486045268070072555}
+  _panel: {fileID: 2066695132553329406, guid: 51740dc4888b7d04cb45e3a827a56a3b, type: 3}
+  _config: {fileID: 11400000, guid: 6c54021fe7a589d438eb40018b752e64, type: 2}
 --- !u!1 &7243572582315204680
 GameObject:
   m_ObjectHideFlags: 0
