@@ -3,7 +3,6 @@ using _Project.Scripts.GameScene.Input;
 using _Project.Scripts.GameScene.Inventory;
 using _Project.Scripts.GameScene.Services.Inventory;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Zenject;
 using ZerglingUnityPlugins.Tools.Scripts.Mono;
 
@@ -68,7 +67,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 
         public void OnDrop(IInventorySlotController inventorySlotController)
         {
-            Debug.Log($"On_Drop I_Inventory_Slot_Controller");
+            //Debug.Log($"On_Drop I_Inventory_Slot_Controller");
 
             if (!_dragInProcess)
                 return;
@@ -90,7 +89,7 @@ namespace _Project.Scripts.GameScene.UI.Widgets.Inventory.DragAndDrop
 
         public void OnDrop(bool isSafe)
         {
-            Debug.Log($"On_Drop pointer_Position");
+            //Debug.Log($"On_Drop pointer_Position");
 
             if (!_dragInProcess)
                 return;
