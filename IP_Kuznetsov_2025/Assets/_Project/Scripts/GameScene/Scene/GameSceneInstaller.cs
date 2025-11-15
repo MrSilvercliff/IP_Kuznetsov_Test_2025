@@ -7,6 +7,7 @@ using _Project.Scripts.GameScene.Services.Craft;
 using _Project.Scripts.GameScene.Services.Inventory;
 using _Project.Scripts.GameScene.Services.ObjectPools;
 using _Project.Scripts.GameScene.Services.Player;
+using _Project.Scripts.GameScene.Services.Tooltip;
 using _Project.Scripts.GameScene.UI.Widgets.Inventory.InventorySlot;
 using System;
 using UnityEngine;
@@ -36,6 +37,8 @@ namespace _Project.Scripts.GameScene.Scene
             BindInventoryServices();
 
             BindCraftServices();
+
+            BindTooltipServices();
 
             BindServiceIniter();
         }
@@ -131,6 +134,12 @@ namespace _Project.Scripts.GameScene.Scene
             Container.Bind<ICraftInventoryAnalyzeService>().To<CraftInventoryAnalyzeService>().AsSingle();
             Container.Bind<ICraftProcessService>().To<CraftProcessService>().AsSingle();
             Container.Bind<ICraftService>().To<CraftService>().AsSingle();
+        }
+
+        private void BindTooltipServices()
+        { 
+            Container.Bind<ITooltipShowService>().To<TooltipShowService>().AsSingle();
+            Container.Bind<ITooltipService>().To<TooltipService>().AsSingle();
         }
     }
 }
