@@ -77,6 +77,7 @@ namespace _Project.Scripts.GameScene.Scene
             Container.BindMemoryPool<GameItem, GameItem.Pool>();
             Container.BindMemoryPool<InventoryController, InventoryControllerPool>();
             Container.BindMemoryPool<InventorySlotController, InventorySlotController.Pool>();
+            Container.BindMemoryPool<TooltipInfo, TooltipInfo.Pool>();
         }
 
         private void BindMonoPools()
@@ -138,6 +139,7 @@ namespace _Project.Scripts.GameScene.Scene
 
         private void BindTooltipServices()
         { 
+            Container.Bind<ITooltipRepository>().To<TooltipRepository>().AsSingle();
             Container.Bind<ITooltipShowService>().To<TooltipShowService>().AsSingle();
             Container.Bind<ITooltipService>().To<TooltipService>().AsSingle();
         }
