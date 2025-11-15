@@ -1,4 +1,5 @@
 using _Project.Scripts.GameScene.Inventory;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -8,6 +9,8 @@ namespace _Project.Scripts.GameScene.Services.Tooltip
 {
     public interface ITooltipService : IProjectService
     {
+        IReadOnlyCollection<ITooltipInfo> GetAllTooltipInfos();
+
         void ShowInventorySlotTooltip(IInventorySlotController inventorySlotController, Vector3 position);
         void HideInventorySlotTooltip(IInventorySlotController inventorySlotController);
     }
@@ -29,6 +32,12 @@ namespace _Project.Scripts.GameScene.Services.Tooltip
             _showService.Flush();
             _repository.Flush();
             return true;
+        }
+
+        public IReadOnlyCollection<ITooltipInfo> GetAllTooltipInfos()
+        {
+            var result = _repository.GetAll();
+            return result;
         }
 
         public void ShowInventorySlotTooltip(IInventorySlotController inventorySlotController, Vector3 position)
