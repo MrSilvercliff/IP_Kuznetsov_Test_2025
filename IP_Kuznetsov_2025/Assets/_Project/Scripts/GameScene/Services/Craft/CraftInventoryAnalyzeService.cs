@@ -15,7 +15,8 @@ using ZerglingUnityPlugins.Tools.Scripts.Interfaces.ProjectService.AsyncSync;
 namespace _Project.Scripts.GameScene.Services.Craft
 {
     public interface ICraftInventoryAnalyzeService : IProjectService
-    { 
+    {
+        public void AnalyzeInventory();
     }
 
     public class CraftInventoryAnalyzeService : ICraftInventoryAnalyzeService
@@ -35,6 +36,12 @@ namespace _Project.Scripts.GameScene.Services.Craft
         {
             _inventoryService.InventoryController.SlotItemChangedEvent -= OnInventorySlotChangedEvent;
             return true;
+        }
+
+        public void AnalyzeInventory()
+        {
+            var craftInventory = _inventoryService.InventoryController;
+            AnalyzeInventory(craftInventory);
         }
 
         private void OnInventorySlotChangedEvent(IInventoryController inventoryController, IInventorySlotController inventorySlotController)

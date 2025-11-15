@@ -22,9 +22,12 @@ namespace _Project.Scripts.GameScene.Services.Craft
     {
         [Inject] private IEventBusAsync _eventBusAsync;
         [Inject] private IProjectBalanceService _projectBalanceService;
-        [Inject] private ICraftInventoryService _craftInventoryService;
+
         [Inject] private IPlayerService _playerService;
         [Inject] private IInventoryService _inventoryService;
+
+        [Inject] private ICraftInventoryService _craftInventoryService;
+        [Inject] private ICraftInventoryAnalyzeService _craftInventoryAnalyzeService;
 
         public Task<bool> Init()
         {
@@ -49,6 +52,8 @@ namespace _Project.Scripts.GameScene.Services.Craft
             var craftRecipeBalanceModel = _craftInventoryService.ActualCraftRecipeBalanceModel;
             SpendCraftRecipeItems(craftRecipeBalanceModel);
             AddCraftRecipeResultItem(craftRecipeBalanceModel);
+
+            _craftInventoryAnalyzeService.AnalyzeInventory();
 
             var evnt = new CraftSuccessEvent();
             _eventBusAsync.Fire(evnt);
