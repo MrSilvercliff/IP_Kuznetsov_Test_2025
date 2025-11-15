@@ -7,7 +7,6 @@ using _Project.Scripts.Project.Services.Balance.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Unity.Android.Types;
 using UnityEngine;
 using Zenject;
 using ZerglingUnityPlugins.Tools.Scripts.EventBus.Async;
@@ -40,14 +39,19 @@ namespace _Project.Scripts.GameScene.Services.Craft
 
         private void OnInventorySlotChangedEvent(IInventoryController inventoryController, IInventorySlotController inventorySlotController)
         {
-            Debug.LogError($"OnInventorySlotChangedEvent");
+            //Debug.LogError($"OnInventorySlotChangedEvent");
             AnalyzeInventory(inventoryController);
         }
 
         private void AnalyzeInventory(IInventoryController inventoryController)
         {
+            /*
+            Debug.LogError($"====================");
+            Debug.LogError($"====================");
+            Debug.LogError($"====================");
             Debug.LogError($"====================");
             Debug.LogError("AnalyzeInventory 1");
+            */
 
             var craftRecipesByCenterItem = GetCraftRecipesByCenterItem(inventoryController);
 
@@ -57,7 +61,7 @@ namespace _Project.Scripts.GameScene.Services.Craft
                 return;
             }
 
-            Debug.LogError("AnalyzeInventory 2");
+            //Debug.LogError("AnalyzeInventory 2");
 
             var actualCraftRecipe = FindActualCraftRecipe(inventoryController, craftRecipesByCenterItem);
 
@@ -67,29 +71,29 @@ namespace _Project.Scripts.GameScene.Services.Craft
                 return;
             }
 
-            Debug.LogError("AnalyzeInventory 3");
+            //Debug.LogError("AnalyzeInventory 3");
 
             var craftResultGameItemBalanceModel = GetCraftResultItem(actualCraftRecipe);
             var craftResultItemCount = actualCraftRecipe.ResultGameItemCount;
             SetCraftResultItem(craftResultGameItemBalanceModel, craftResultItemCount);
 
-            Debug.LogError("AnalyzeInventory 4");
+            //Debug.LogError("AnalyzeInventory 4");
         }
 
         private IReadOnlyList<ICraftRecipeBalanceModel> GetCraftRecipesByCenterItem(IInventoryController craftInventoryController)
         {
-            Debug.LogError($"GetCraftRecipesByCenterItem 1");
+            //Debug.LogError($"GetCraftRecipesByCenterItem 1");
 
             var inventorySlots = craftInventoryController.SlotControllers;
             var centerSlotIndex = Mathf.FloorToInt((float)inventorySlots.Count / 2);
             var centerSlot = inventorySlots[centerSlotIndex];
 
-            Debug.LogError(centerSlotIndex);
+            //Debug.LogError(centerSlotIndex);
 
             if (centerSlot.IsEmpty)
                 return null;
 
-            Debug.LogError($"GetCraftRecipesByCenterItem 2");
+            //Debug.LogError($"GetCraftRecipesByCenterItem 2");
 
             var centerItemId = centerSlot.Item.Id;
             var craftRecipeBalanceStorage = _balanceService.CraftRecipes;
@@ -106,8 +110,15 @@ namespace _Project.Scripts.GameScene.Services.Craft
                 var craftRecipe = craftRecipesList[i];
                 var checkResult = CheckCraftRecipe(craftInventoryController, craftRecipe);
 
+                //Debug.LogError($"====================");
+                //Debug.LogError($"craftRecipe.Id = {craftRecipe.Id}");
+                //Debug.LogError($"checkResult = {checkResult}");
+
                 if (checkResult)
+                {
+                    result = craftRecipe;
                     break;
+                }
             }
 
             return result;
@@ -127,37 +138,66 @@ namespace _Project.Scripts.GameScene.Services.Craft
                 var recipeItemId = craftRecipeItemsId[i];
                 var recipeItemCount = craftReciptItemsCount[i];
 
+                //DebugPrint(i, inventorySlot, recipeItemId, recipeItemCount);
+
                 if (inventorySlot.IsEmpty && string.IsNullOrEmpty(recipeItemId))
+                {
+                    //Debug.LogError("CheckCraftRecipe 1");
                     continue;
+                }
 
                 if (inventorySlot.IsEmpty && !string.IsNullOrEmpty(recipeItemId))
                 {
+                    //Debug.LogError("CheckCraftRecipe 2");
                     result = false;
                     break;
                 }
 
                 if (!inventorySlot.IsEmpty && string.IsNullOrEmpty(recipeItemId))
                 {
+                    //Debug.LogError("CheckCraftRecipe 3");
                     result = false;
                     break;
                 }
 
                 var inventoryItemId = inventorySlot.Item.Id;
+                var inventoryItemCount = inventorySlot.Item.Count;
 
-                if (inventoryItemId.Contains(recipeItemId) && inventoryItemId.Length == recipeItemId.Length)
+                if (inventoryItemId != recipeItemId)
                 {
+                    //Debug.LogError("CheckCraftRecipe 4");
                     result = false;
                     break;
                 }
 
-                if (inventorySlot.Item.Count < recipeItemCount)
+                if (inventoryItemCount < recipeItemCount)
                 {
+                    //Debug.LogError("CheckCraftRecipe 5");
                     result = false;
                     break;
                 }
             }
 
             return result;
+        }
+
+        private void DebugPrint(int index, IInventorySlotController slotController, string craftRecipeItemId, int craftRecipeItemCount)
+        {
+            Debug.LogError($"--------------------");
+            Debug.Log($"INDEX = {index}");
+
+            if (slotController.IsEmpty)
+                Debug.LogError($"InventorySlotController IS EMPTY");
+            else
+            {
+                var slotItem = slotController.Item;
+                Debug.LogError($"InventorySlotController NOT EMPTY");
+                Debug.LogError($"slotItem.Id = [{slotItem.Id}]");
+                Debug.LogError($"slotItem.Count = {slotItem.Count}");
+            }
+
+            Debug.LogError($"craftRecipeItemId = [{craftRecipeItemId}]");
+            Debug.LogError($"craftRecipeItemCount = [{craftRecipeItemCount}]");
         }
 
         private IGameItemBalanceModel GetCraftResultItem(ICraftRecipeBalanceModel craftRecipeBalanceModel)
