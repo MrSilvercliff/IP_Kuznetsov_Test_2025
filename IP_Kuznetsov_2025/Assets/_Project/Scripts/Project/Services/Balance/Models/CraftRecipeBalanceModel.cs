@@ -1,5 +1,6 @@
 using Defective.JSON;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.BalanceStorage;
 using ZerglingUnityPlugins.Balance_JSON_Object.Scripts.JSONParse;
@@ -32,7 +33,28 @@ namespace _Project.Scripts.Project.Services.Balance.Models
 
         public override void DebugPrint()
         {
-            
+            var builder = new StringBuilder();
+            builder.AppendLine($"_id = {_id}");
+            builder.AppendLine($"ResultGameItemId = {ResultGameItemId}");
+            builder.AppendLine($"ResultGameItemCount = {ResultGameItemCount}");
+
+            var addBuilder = new StringBuilder();
+            for (int i = 0; i < CraftRecipeItemsId.Count; i++)
+                addBuilder.AppendLine($"CraftRecipeItemsId[{i}] : [{CraftRecipeItemsId[i]}]");
+
+            builder.AppendLine($"CraftRecipeItemsId:");
+            builder.AppendLine(addBuilder.ToString());
+
+            addBuilder.Clear();
+
+            for (int i = 0; i < CraftRecipeItemsCount.Count; i++)
+                addBuilder.AppendLine($"CraftRecipeItemsCount[{i}] : [{CraftRecipeItemsCount[i]}]");
+
+            builder.AppendLine($"CraftRecipeItemsCount:");
+            builder.AppendLine(addBuilder.ToString());
+
+            var result = builder.ToString();
+            Debug.LogError(result);
         }
     }
 }
